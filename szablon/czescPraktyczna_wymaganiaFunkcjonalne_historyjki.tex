@@ -1,10 +1,10 @@
 \chapter{Wymagania funkcjonalne}
 	\section{Historyjki użytkownika ( Warstwa fizyczna łącza danych ) - nazwa komendy}
-		Proces nawiązania połączenia z RET-em można zamodelować przy pomocy maszyny stanów w związku z czym z poniższych funkcjonalności należy korzystać zgodnie z zadaną kolejnością.
+		Częstą praktyką modelowania etapu łączenia z RET-em jest użycie przy maszyny stanowej w związku z czym, z poniższych funkcjonalności należy korzystać zgodnie z zadaną kolejnością.
 		Dla każdej z poniższych ramek wyznaczono część wspólną składającą się z czterech bajtów. Pierwszym z nich jest bajt flagi startu, która oznacza początek wiadomości i ma wartość 0x7E.
 		Koleje bajty budują ramkę XID, I, U, S o których wspomniano wcześniej. Następnie dodaje się dwubajtową sumę CRC oraz na samym końcu flagę stopu, która jest tej samej wartości co flaga startu i oznacza koniec nadawania wiadomości.
 		\subsection{Ustanowienie prędkości połączenia - SetLinkSpeed}
-			Jako użytkownik chcę ustawić jeden z parametrów warstwy fizycznej a mianowicie prędkość transmisji równą 9.6 kbps.
+			Jako użytkownik chcę ustanowić prędkość transmisji na 9.6 kbps.
 			\newline\newline
 			Jest to komenda wysyłana do urządzenia podrzędnego przy pomocy ramki XID.
 			\newline
@@ -18,9 +18,9 @@
 			Potem napotykamy kolejne dwa bajty o wartości 0xF0 które są identyfikatorem grupy, co mówi nam jakie kolejne bajty dopuszczalne są w dalszej części wiadomości.
 			\newline
 			Urządzenie podrzędne w celu umożliwienia mu zdekodowania wiadomości, otrzymuje w wiadomości długość grupy, czyli dwa bajty w tym przypadku o wartości 0x08 i jest to 
-			liczba bajtów która pojawi się następnie, aż do sumy CRC i bajtu stopu.
+			liczba bajtów która pojawi się następnie, aż do pierwszego bajta sumy CRC.
 			\newline
-			Przechodząc do przesyłanych parameterów, jako pierwszy będzie to unikalny identyfikator urządzenia. Możemy to rozpoznać po identyfikatorze o wartości 0x01.
+			Przechodząc do przesyłanych parameterów, jako pierwszy będzie to unikalny identyfikator urządzenia. Rozpoznano go po identyfikatorze parameteru o wartości 0x01.
 			Następnie podajemy liczbę bajtów zajmowanych przez UniqueID czyli 0x02. Kolejnie podajemy wartość unikalnego identyfikatora. Z racji tego, że nie oczekujemy odpowiedzi
 			na tę wiadomość, są to dowolne wartości.
 			Drugim przesyłanym parametrem jest maska danych z identyfikatorem o wartości 0x03, potem podajemy liczbę bajtów budujących przesyłaną przez nas maskę czyli 0x02, a w wartości 
@@ -78,7 +78,7 @@
 			Wprowadzono w niej wparcie dla interfejsu radiowego opartego o OFDMA\footnote{\label{OFDMA} OFDMA - Orthogonal frequency-division multiple access.}, którego wykorzystanie można zaobserwować również przy technologii 5G.
 		\subsection{Negocjacja parametrów HDLC - AISGProtocolVersion}
 			Jako użytkownik chcę wynegocjować parameter HDLC urządzenia, jakim jest wspierana wersja protokołu AISG. \newline
-			Z racji tego, że aktualną wersją protokołu AISG jest ta z numerem 2.0, istnieją jeszcze dwie wcześniejsze jak 1.0, 1.1 oraz w trakcie wdrażania jest również 3.0, potrzeba zdefiniować według którego standardu budowane są
+			Z racji tego, że implementowana wersja protokołu AISG 2.0 jest jedną z wielu ( istnieją jeszcze dwie wcześniejsze: 1.0, 1.1 oraz najnowsza 3.0), potrzeba zdefiniować według którego standardu budowane są
 			wiadomości przez urządzenie nadrzędne oraz rozpoznawane przez podrzędne.
 			Bajt identyfikujący parametr dla tej wiadomości ma wartość 0x14, długość parametru to 0x01 a jej wartość to 0x02.
 	\section{Historyjki użytkownika ( Warstwa aplikacyjna ) - nazwa komendy}
@@ -88,8 +88,10 @@
 		\subsection{Kalibracja - Calibrate}
 			Jako użytkownik chcę skalibrować urządzenie.
 			\newline\newline
-			Z racji tego, że wiadomości tej warstwy korzystają z ramki informacyjnej, inną rolę pełni bajt kontrolny. Poza stałymi wartości bitów w bajcie, każdorazowe wysłanie i odebranie wiadomości zmienia wartość sekcji P/F wcześniej wspomnianej. Dzięki temu można w łatwy sposób identyfikować czy wiadomość którą otrzymujemy jest ta której oczekiwaliśmy. W związku z tym dla pierwszej wiadomości wysłanej przez urządzenie nadrzędne poprawną wartością, będzie
-			0x10.
+			Z racji tego, że wiadomości tej warstwy korzystają z ramki informacyjnej, inną rolę pełni bajt kontrolny. Poza stałymi wartości bitów w bajcie, 
+			każdorazowe wysłanie i odebranie wiadomości zmienia wartość sekcji P/F wcześniej wspomnianej. 
+			Dzięki temu można w łatwy sposób identyfikować czy wiadomość którą otrzymujemy jest ta której oczekiwaliśmy. 
+			W związku z tym dla pierwszej wiadomości wysłanej przez urządzenie nadrzędne poprawną wartością, będzie 0x10.
 			\newline
 			Kolejnym bajtem jest kod procedury, który ma wartość 0x31, co oznacza, że oczekujemy kalibracji urządzenia będącego zwykłym pojedynczym RET-em.
 			\newline
