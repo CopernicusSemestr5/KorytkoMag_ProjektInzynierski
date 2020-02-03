@@ -1,0 +1,47 @@
+\chapter{Wymagania niefunkcjonalne}
+\section{Środowisko uruchomieniowe}
+	\begin{itemize}
+		\item System operacyjny Linux
+			\begin{itemize}
+				\item Dystrybucje:
+				\begin{itemize}
+					\item Manjaro 17.01;
+				\end{itemize}
+				\item Zależności:
+					\begin{itemize}
+						\item CMake 3.15.4;
+						\item Boost C++ Libraries 1.71;
+						\item Git -> Pobranie kodu produkcyjnego, GTest, GMock;
+						\item GCC 9.2;
+					\end{itemize}
+			\end{itemize}
+		\item Podłączenie do internetu w celu pobrania repozytorium oraz kompilacji programu uruchomieniowego
+		\item Instalacja
+		\begin{enumerate}
+			\item git clone https://github.com/trunksBT/Almag\_RetDriverSimulator.git -{}-recursive
+			\item cd Almag\_RetDriverSimulator
+			\item make .
+			\item bash runBinary.sh
+		\end{enumerate}
+	\end{itemize}
+\section{Zrzuty ekranu}
+	\begin{figure}[p]
+	\includegraphics[scale=0.3]{ExecutionOfMT.png}
+	\caption{Zrzut ekranu z wykonania testów modułowych}
+	\end{figure}
+	
+	\begin{figure}[p]
+	\includegraphics[scale=0.3]{ExecutionOfUT.png}
+	\caption{Zrzut ekranu z wykonania testów jednostkowych}
+	\end{figure}
+	
+	\begin{figure}[p]
+	\includegraphics[scale=0.3]{ExecutionOnSeverityInfo.png}
+	\caption{Zrzut ekranu z uruchomienia programu z odfiltrowaniem logów poniżej priorytetu info}
+	\end{figure}
+	
+	\begin{figure}[p]
+	\includegraphics[scale=0.3]{ExecutionOnSeverityTrace.png}
+	\caption{Zrzut ekranu z uruchomienia programu bez odfiltrowania logów}
+	\end{figure}
+

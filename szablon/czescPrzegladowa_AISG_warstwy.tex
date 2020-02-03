@@ -1,0 +1,28 @@
+\chapter{Protokół AISG 2.0}
+	Symulator sterownika ma za zadanie odebrać od użytkownika polecenie w postaci komendy wieloargumentowej która zawierała będzie nazwę procedury rozpoznawanej przez odpowiednie warstwy protokołu komunikacyjnego AISG v2.0\footnote{\label{AISG} Protokół AISG v2.0 - https://aisg.org.uk/files/AISG-v2.0.pdf} realizującego podzbiór modelu OSI\footnote{\label{Model OSI} Model OSI - model odniesienia łączenia systemu otwartych opisujący strukturę komunikacji sieciowej, https://pl.wikipedia.org/wiki/Model\_OSI}.
+	\section{Warstwy}
+		\subsection{1-sza - Fizyczna}
+		Realizacja projektu w kierunku emulacji fizycznego połączenia do urządzenia niesie ze sobą pewne zmiany na tej warstawie.\newline
+		Należy pominąć obszar mechaniczny i elektryczny, a skupić się na obszarze funkcjonalnym oraz proceduralnym.
+		\subsection{2-ga - Łącza danych}
+		Rolą tej warstwy jest:
+		\begin{itemize}
+			\item Enkapsulacja\footnote{\label{Enkapsulacja} Enkapsulacja - https://pl.wikipedia.org/wiki/Kapsułkowanie} ramki HDLC Body\footnote{\label{HDLC Body} HDLC Body - Ramka HDLC bez bajtów startu, stopu, sumy CRC.} do ramki HDLC\footnote{\label{DUPA} HDLC - https://en.wikipedia.org/wiki/High-Level\_Data\_Link\_Control}:
+			\begin{itemize}
+				\item Dodanie bitów startu i stopu;
+				\item Obliczenie oraz walidacja sumy CRC;\footnote{\label{CRC} Suma CRC16 - https://en.wikipedia.org/wiki/Cyclic\_redundancy\_check}
+			\end{itemize}
+			\item Budowa ramki typu XID podczas procedur negocjacji:
+			\begin{itemize}
+				\item Rozmiaru ramki;
+				\item Unikalnego identyfikatora urządzenia na które składa się numer seryjny oraz kod producenta;
+				\item Wersji 3GPP oraz AISG urządzenia podrzędnego;
+				\item Adresu;
+			\end{itemize}
+			\item Budowa ramki typu U w celu ustanowienia normalnego trybu komunikacji;
+		\end{itemize}
+		\subsection{7-ma - Aplikacji}
+			\begin{itemize}
+				\item Budowa ramki typu I;
+				\item Rozpoznawanie wysokopoziomowej komendy kalibruj;
+			\end{itemize}

@@ -1,0 +1,36 @@
+\chapter{SOLID}
+Projektując sterownik starałem się postępować według dobrych praktyk programowania, powszechnie znanych jako skrót SOLID.
+Dążenie do ich realizacji sprawia, że korzystanie, rozbudowywanie jak i utrzymywanie powstałego kodu źródłowego przypomina
+przyjemne poruszanie się po świecie gry aniżeli walkę z napotkałymi przeszkodami. 
+Tak powstały program umożliwia łatwe ponowne używanie wcześniej powstałego kodu. 
+Zwrócić też trzeba uwagę na użyte wcześniej słowo, gdyż nie przez przypadek wspomniałem właśnie o dążeniu do ich wdrożenia.
+Poniższe reguły czasami bywają ciężkie w realizacji zwłaszcza, kiedy nasz system osiągnie duże rozmiary,
+dlatego warto myśleć o nich już na początkowym etapie. 
+Trzeba też pamiętać o tym, że nie jest rozsądne stosowanie którejkolwiek z reguł SOLID, jeśli nie ma ku temu wyraźnych powodów, dlatego 
+jedynie doświadczenie oraz intuicja pozwoli nam wyczuć moment podjęcia decyzji projektowej.
+Pozwolę sobie przedstawić prawa budujące zasady SOLID oraz wspomnieć o ich głównych założeniach.
+
+\section{SRP}
+Z angielskiego Single Responsibility Principle, a więc zasada pojedynczej odpowiedzialności.
+Mówi ona, że powód modyfikacji klasy powinien być tylko jeden. \autocite[103]{martin2015zwinne}
+Realizacja tej reguły uchroni nas przed niechcianą modyfikacją definicji dużej liczby klas w przypadku zmiany logiki tylko jednej z nich.
+
+\section{OCP}
+Z angielskiego Open/Closed Principle, a więc zasada otwarte-zamknięte.
+Mówi ona, że encje programowanie (klasy, moduły, funkcje itp.) powinny być otwarte na rozbudowę, ale zamknięte dla modyfikacji.\autocite[117]{martin2015zwinne}
+Jeśli ta zasada zostanie właściwie zastosowana, to nowe zmiany uzyskuje się poprzez dodanie nowego kodu, aniżeli zmiane istniejącego. 
+
+\section{LSP}
+Z angielskiego Liskov Substitution Principle, a więc zasada podstawiania Liskov.
+Mówi ona, że musi być możliwość podstawienia typów pochodnych za ich typy bazowe.\autocite[127]{martin2015zwinne}
+Trzeba pamiętać o tej regule w trakcie definiowania relacji dziedziczenia pomiędzy klasami.
+
+\section{ISP}
+Z angielskiego Interface Segregation Principle, a więc zasada segregacji interfejsów.
+Mówi ona, że klienty nie powinny być zmuszone do zależności od metod, których nie używają.\autocite[151]{martin2015zwinne}
+Dzięki postępowaniu zgodnie z tą zasadą, utworzone interfejsy abstrakcyjnych klas bazowych będą zawierały minimalną ilość funkcji czysto wirtualnych.
+
+\section{DIP}
+Z angielskiego Dependency Inversion Principle, a więc zasada odwracania zależności.
+Mówi ona po pierwsze, że moduły wysokopoziomowe nie powinny zależeć od modułów niskopoziomowych. I jedne, i drugie powinny zależeć od abstrakcji.\autocite[141]{martin2015zwinne}
+Kolejnym postulatem jest to, że abstrakcje nie powinny zależeć od szczegółów. To szczegóły powinny zależeć od abstrakcji.\autocite[141]{martin2015zwinne}

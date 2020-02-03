@@ -1,0 +1,24 @@
+\section{HDLC}
+Z języka angielskiego High-Level Data Link Control. Protokół warstwy łącza danych modelu OSI. 
+Standard HDLC opisuje norma ISO, lecz szeroko stosuje się także implementację CISCO.
+HDLC jest stosowany w technologii WAN, obsługuje zarówno połączenia dwupunktowe, jak i wielopunktowe. 
+Jest protokołem o orientacji bitowej oraz jest przezroczysty informacyjnie. \autocite{WIKI_HDLC}
+W przypadku jeśli przesyłana wartość jest wielobajtowa, zastosowane jest podejście cienkokońcowości.
+\footnote{\label{Little endian} Little endian - inaczej cienkokońcowość, forma zapisu danych o rozmiarze większym niż jeden bajt w której najmniej znaczący bajt umieszczony jest jako pierwszy.}
+\subsection{Struktura ramki}
+\begin{enumerate}
+    \item Flaga startu - 0x7E;
+    \item Adres stacji docelowej;
+    \item Sterowanie - określa typ ramki oraz jej parametry w zależności od typu;
+    \item Dane;
+    \item Suma kontrolna FCS ( dwubajtowa ) - na przykład CRC-16;
+    \item Flaga stopu - 0x7E;
+\end{enumerate}
+\subsection{Typy ramek}
+\begin{itemize}
+    \item Ramka I - Informacyjna;
+    \item Ramka U - Nienumerowana;
+    \item Ramka S - Nadzorująca;
+    \item Ramka XID - Identyfikująca urządzenia;
+\end{itemize}
+% WIKI

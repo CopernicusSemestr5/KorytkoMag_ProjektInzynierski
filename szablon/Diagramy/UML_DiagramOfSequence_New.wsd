@@ -1,0 +1,126 @@
+@startuml
+
+title KalibracjaRETa
+
+actor RetDriverUser
+participant RetDriver
+participant RetSimulator
+
+note over RetDriverUser, RetSimulator
+Wszystkie poniższe wartości zostały przedstawione w systemie szesnastkowym
+a więc FF oznacza 0xFF.
+Pominięte też zostały stałe elementy dla wiadomości takie jak:
+- flaga startu == 7E
+- sumy CRC == 13 37
+- flagi stopu == 7E
+end note
+
+== L1 Warstwa fizyczna ==
+
+RetDriverUser -> RetDriver : SetLinkSpeed 6666
+loop 5 wiadomości, każda co 300ms
+    RetDriver -> RetSimulator : XID\n\
+    FF BF 81 F0 08\n\
+    01 02 33 33\n\
+    03 02 FF FF
+end
+
+== L2 Warstwa łącza danych ==
+
+RetDriverUser -> RetDriver : DeviceScan 5555
+RetDriver -> RetSimulator : XID\n\
+    FF BF 81 F0 08\n\
+    01 02 00 00\n\
+    03 02 00 00
+
+RetSimulator -> RetDriver : XID\n\
+    00 BF 81 F0 12\n\
+    01 09 4E 4B 34 36 35 30 30 30 30\n\
+    04 01 01\n\
+    06 02 4E 4B
+
+newpage
+
+RetDriverUser -> RetDriver : AddressAssignment 5555
+RetDriver -> RetSimulator : XID\n\
+    FF BF 81 F0 11\n\
+    01 09 4E 4B 34 36 35 30 30 30 30\n\
+    02 01 03\n\
+    04 01 01
+
+RetSimulator -> RetDriver : XID\n\
+    03 BF 81 F0 12\n\
+    01 09 4E 4B 34 36 35 30 30 30 30\n\
+    04 01 01\n\
+    06 02 4E 4B
+
+.......
+
+RetDriverUser -> RetDriver : DeviceScan 5555
+RetDriver -> RetSimulator : XID\n\
+    FF BF 81 F0 08\n\
+    01 02 00 00\n\
+    03 02 00 00
+
+newpage
+
+RetDriverUser -> RetDriver : HDLCParameters 5555
+RetDriver -> RetSimulator : XID\n\
+    03 BF 81 80 12\n\
+    05 04 F0 2D 00 00\n\
+    06 04 F0 2D 00 00\n\
+    07 01 01\n\
+    08 01 01 
+
+RetSimulator -> RetDriver : XID\n\
+    03 BF 81 80 12\n\
+    05 04 50 02 00 00\n\
+    06 04 50 02 00 00\n\
+    07 01 01\n\
+    08 01 01
+
+......
+
+RetDriverUser -> RetDriver : LinkEstablishment 5555
+RetDriver -> RetSimulator : U::SNRM\n\
+    03 93 
+
+RetSimulator -> RetDriver : U::UA\n\
+    03 73
+
+newpage
+
+RetDriverUser -> RetDriver : 3GPPReleaseID 5555
+RetDriver -> RetSimulator : XID\n\
+    03 BF 81 F0 03\n\
+    05 01 08
+
+RetSimulator -> RetDriver : XID\n\
+    03 BF 81 F0 03\n\
+    05 01 08
+
+......
+
+RetDriverUser -> RetDriver : AisgProtocolVersion 5555
+RetDriver -> RetSimulator : XID\n\
+    03 BF 81 F0 03\n\
+    14 01 02
+
+RetSimulator -> RetDriver : XID\n\
+    03 BF 81 F0 03\n\
+    14 01 02
+
+== L7 Warstwa aplikacyjna ==
+
+RetDriverUser -> RetDriver : Calibrate 5555
+RetDriver -> RetSimulator : I\n\
+    03 10\n\
+    31 00 00 
+
+RetSimulator -> RetDriver : I\n\
+    03 30\n\
+    31 01 00 00 
+
+footer Pawel Korycinski
+
+@enduml

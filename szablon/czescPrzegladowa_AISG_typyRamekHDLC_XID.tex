@@ -1,0 +1,25 @@
+\section{Typy ramek HDLC}
+	\subsection{Ramka XID}
+	Jej nazwa pochodzi z języka angielskiego ,,exchange identification''. 
+	Służy do przekazania urządzeniu podrzędnemu wiedzy na temat możliwości oraz charakterystyki komunikacji na warstwie łącza danych.\autocite{WIKI_ENG_HDLC}
+	Odpowiadając na tego typu wiadomości, urządzenie podrzędne najczęściej zwraca tę samą wartość w przypadku zgodności 
+	bądź najwyższą wspieraną, jeśli żądana jest zbyt duża. Szereg wysłanych i odebranych wiadomości XID nazywamy XID negocjacją.
+	Tej ramki używamy również podczas ustalania prędkości komunikacji co jest częścią zestawiania warstwy fizycznej.
+	Bajt kontrolny dla wiadomości przesyłanej będzie miał zawsze wartość 0xBF. \newline
+	Bajty budujące ramkę:
+	\begin{itemize}
+		\item Adresu;
+		\item Kontrolny;
+		\item Identyfikujący format;
+		\item Identyfikujący grupę;
+		\item Długości grupy;
+		\item Parametrów HDLC:
+		\begin{itemize}
+			\item Identyfikujący parameter;
+			\item Długości parameteru;
+			\item Wartości parametru;
+		\end{itemize}
+	\end{itemize} 
+	Nie przez przypadek wspomniałem o parametrach HDLC zamiast o parametrze, gdyż równie dobrze można wysłać
+    trzy wiadomości zawierające po jednym parametrze, jak i połączyć je w jedną większą.
+	
