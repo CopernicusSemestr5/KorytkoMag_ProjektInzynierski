@@ -21,8 +21,9 @@ Bajty budujące ramkę:
 	\item Adresu;
 	\item Kontrolny;
 	\item Kodu procedury;
+	\item Dodatkowe wartości procedury/raportujące proces wykonania procedury;
 \end{itemize}
-Wiadomości tego typu posiadają zmienną wartość bajtu kontrolnego, nawet przy wielokrotnym żadaniu wykonania tej samej procedury, co różni ją od ramki U czy XID. 
+Wiadomości tego typu przy wielokrotnym zawołaniu żądania wykonania tej samej procedury posiadają zmienną wartość bajtu kontrolnego, co różni ją od ramki U czy XID. 
 \newline
 Proces ten w przypadku bitu który ustawiany jest na pozycji 4 bajtu kontrolnego P/F\footnote{\label{Bit P/F} P/F - ang. bit Pool/Final} służy do:
 \begin{itemize}
@@ -32,7 +33,7 @@ Proces ten w przypadku bitu który ustawiany jest na pozycji 4 bajtu kontrolnego
 Wartość bitu na pozycji 0 jest zawsze równa 0. 
 Bity od piątego do siódmego włącznie definiują nam licznik wiadomości odebranych przez urządzenie nadrzędne czyli N(R)\footnote{\label{N(R)} N(R) - ang. Receive sequence number}. 
 Bity od pierwszego do trzeciego włącznie definiują nam licznik wiadomości wysłanych przez urządzenie nadrzędne czyli N(S)\footnote{\label{N(S)} N(S) - ang. Send sequence number}.
-Na poniższym diagramie możemy zaobserwować ewaluację bajtu kontrolnego dla kolejnych wiadomości.
+Na poniższym diagramie przedstawiono ewaluację bajtu kontrolnego dla kolejnych wiadomości warstwy aplikacyjnej.
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=1.0]{out/FrameI_Bajt_kontrolny/FrameI_Bajt_kontrolny.png}
