@@ -1,11 +1,10 @@
 \chapter{SOLID}
-Projektując sterownik starałem się postępować według dobrych praktyk programowania, powszechnie znanych jako skrót SOLID.
-Dążenie do ich realizacji sprawia, że korzystanie, rozbudowywanie jak i utrzymywanie powstałego kodu źródłowego przypomina
+Projektując sterownik podjęto próbę podążania zgodnie z dobrymi praktyk programowania, powszechnie znanymi jako SOLID.
+Pomyślna ich realizacja sprawia, że korzystanie, rozbudowywanie jak i utrzymywanie powstałego kodu źródłowego przypomina
 przyjemne poruszanie się po świecie gry aniżeli walkę z napotkałymi przeszkodami. 
 Tak powstały program umożliwia łatwe ponowne używanie wcześniej powstałego kodu. 
 Zwrócić też trzeba uwagę na użyte wcześniej słowo, gdyż nie przez przypadek wspomniałem właśnie o dążeniu do ich wdrożenia.
-Poniższe reguły czasami bywają ciężkie w realizacji zwłaszcza, kiedy nasz system osiągnie duże rozmiary,
-dlatego warto myśleć o nich już na początkowym etapie. 
+Poniższe reguły czasami bywają ciężkie w realizacji zwłaszcza, kiedy nasz system osiągnie duże rozmiary, dlatego warto myśleć o nich już na początkowym etapie. 
 Trzeba też pamiętać o tym, że nie jest rozsądne stosowanie którejkolwiek z reguł SOLID, jeśli nie ma ku temu wyraźnych powodów, dlatego 
 jedynie doświadczenie oraz intuicja pozwoli nam wyczuć moment podjęcia decyzji projektowej.
 Pozwolę sobie przedstawić prawa budujące zasady SOLID oraz wspomnieć o ich głównych założeniach.
@@ -28,9 +27,9 @@ Trzeba pamiętać o tej regule w trakcie definiowania relacji dziedziczenia pomi
 \section{ISP}
 Z angielskiego Interface Segregation Principle, a więc zasada segregacji interfejsów.
 Mówi ona, że klienty nie powinny być zmuszone do zależności od metod, których nie używają.\autocite[151]{martin2015zwinne}
-Dzięki postępowaniu zgodnie z tą zasadą, utworzone interfejsy abstrakcyjnych klas bazowych będą zawierały minimalną ilość funkcji czysto wirtualnych.
+Dzięki postępowaniu zgodnie z tą zasadą, utworzone interfejsy abstrakcyjnych klas bazowych będą zawierały minimalną liczbę funkcji czysto wirtualnych.
 
 \section{DIP}
 Z angielskiego Dependency Inversion Principle, a więc zasada odwracania zależności.
-Mówi ona po pierwsze, że moduły wysokopoziomowe nie powinny zależeć od modułów niskopoziomowych. I jedne, i drugie powinny zależeć od abstrakcji.\autocite[141]{martin2015zwinne}
+Mówi ona, że moduły wysokopoziomowe nie powinny zależeć od modułów niskopoziomowych. I jedne, i drugie powinny zależeć od abstrakcji.\autocite[141]{martin2015zwinne}
 Kolejnym postulatem jest to, że abstrakcje nie powinny zależeć od szczegółów. To szczegóły powinny zależeć od abstrakcji.\autocite[141]{martin2015zwinne}
