@@ -7,22 +7,24 @@
     \newpage
 
     Na diagramach sekwencji przedstawiono komendy wywoływane przez użytkownika
-    symulatora wraz z zawartościami ramek wychodzących z urządzenia nadrzędnego oraz
-    wartościami ramek wychodzących z urządzenia podrzędnego.
+    symulatora wraz z zawartościami ramek pochodzących z urządzenia nadrzędnego oraz
+    wartościami ramek przychodzących z urządzenia podrzędnego.
     W celu analizy procesu komunikacji, w opisie skupiono sie na cechach charakterystycznych
-    dla poszczególnej ramki czy komendy o których nie wspomniano we wcześniejszych rozdziałach.
+    dla poszczególnej ramki czy komendy, o których nie wspomniano we wcześniejszych rozdziałach.
     
     \section{Ustanowienie prędkości połączenia}
     Parametrem tej komendy jest adres portu 6666, z którego korzysta sterownik
     do nawiązania połączenia typu tcp na adresie 127.0.0.1 wraz z symulatorem urządzenia,
     przy zastosowania wzorca Publish-Subscribe. Podczas tego połączenia protokół AISG 2.0 
-    nie zakłada oczekiwania na odpowiedź od urządzenia nadrzędnego oraz użyta biblioteka
+    nie zakłada oczekiwania na odpowiedź od urządzenia podrzędnego oraz użyta biblioteka
     ZeroMQ również nie udostępnia możliwości wysłania odpowiedzi na taką wiadomość.
 
     \section{Skanowanie urządzeń}
     Parametrem tej komendy jest adres portu 5555, z którego korzysta sterownik
     do nawiązania połączenia typu tcp na adresie 127.0.0.1 wraz z symulatorem urządzenia,
-    przy zastosowania wzorca Request-Response.
+    przy zastosowania wzorca Request-Response. Jest to wzorzec, który zakłada otrzymanie 
+    odpowiedzi na każdą wysłaną wiadomość, zanim kolejna zostanie nadana. Opisany mechanizm komunikacji
+    aplikowalny jest również do wszystkich poniższych komend.
     Ciekawym elementem tej wiadomości jest to, że otrzymano kod producenta zarówno
     w osobnym parametrze jak i jako składową unikalnego identyfikatora urządzenia.
 
@@ -41,18 +43,19 @@
     \section{Ponowne skanowanie urządzeń}
     W zakresie tego projektu komunikacja nawiązywana jest z jednym urządzeniem, a więc dlaczego
     ponownie wysłano wiadomość skanowania ? Otóż na tę wiadomość urządzenie nadrzędne
-    nie powinno otrzymać odpowiedzi, gdyż jedynie urządzenia niezaadresowane, mogą na nie 
+    nie powinno otrzymać odpowiedzi, gdyż jedynie urządzenia niezaadresowane mogą na nie 
     odpowiedzieć, co jest podstawową metodą dodatkowej weryfikacji powodzenia procedury
     adresowania.
 
     \section{Negocjacje parametrów HDLC}
     Cechą negocjacji parametrów przy pomocy ramek XID jest to, że jeśli żądana wartość jest wspierana przez
-    urządzenie podrzędne to odpowie ono wiadomością zawierającą te same parametry wraz z żądanymi przez urządzenie nadrzędne
-    wartościami. W przeciwnym przypadku otrzymanymi wartościami parametrów będą największe możliwe przez nie wspierane.
-    Zaobserwowano to zjawisko w przypadku negocjacji wielkości payloadu\footnote{\label{Payload} Payload - Fragment wiadomości, który nie zawiera bajtów takich jak nagłówki bądź metadane a jedynie ,,istotne''
+    urządzenie podrzędne to odpowie ono wiadomością zawierającą te same parametry oraz te same wartości. 
+    W przeciwnym wypadku otrzymanymi wartościami parametrów będą największe możliwe przez nie wspierane.
+    Zaobserwowano to zjawisko w przypadku negocjacji wielkości payloadu
+    \footnote{\label{Payload} Payload - Fragment wiadomości, który nie zawiera bajtów takich jak nagłówki bądź metadane a jedynie ,,istotne''
     informacje.} dla wysłanej oraz otrzymanej ramki informacyjnej.
     Urządzenie nadrzędne próbowało ustanowić dopuszczalną liczbę bitów na \{0xF0, 0x2D, 0x00, 0x00\} co daje wartość 61485,
-    lecz urządzenie podrzędne odpowiedziało \{0x50, 0x02, 0x00, 0x00\} co wynosi 20482 bity.
+    lecz urządzenie podrzędne odpowiedziało \{0x50, 0x02, 0x00, 0x00\} co po konwersji na system dziesiętny daje 20482 bity.
 
     \section{Przejście na normalny tryb komunikacji}
     Jako odpowiedź na tę wiadomość urządzenie otrzyma ramkę, która zawiera wartość 0x73, co oznacza że 
@@ -60,11 +63,11 @@
 
     \section{Kalibracja}
     W związku z tym, że oczekiwanie kalibracji przesłano przy pomocy ramki informacyjnej, bajt kontrolny posiada
-    charakterystyczną metodę jego ewaluacji wspomnianą oraz przedstawioną wcześniej. Diagram sekwencji
-    potwierdza to wiadomość odebrana przez urządzenie nadrzędne posiada tę wartość równą 0x30.
-    Ramka odebrana na wyznaczenie liczby bajtów budujących odpowiedź posiada zarezerowane dwa bajty zapisane
-    jako little endian. Ciekawą obserwacją jest to, że odpowiedź równą 0x00 czyli OK można by zapisać przy pomocy jedynie
-    jednego bajta.
+    charakterystyczną metodę jego ewaluacji przedstawioną wcześniej. Diagram sekwencji
+    potwierdza to, gdyż wiadomość odebrana przez urządzenie nadrzędne posiada wartość równą 0x30.
+    Ramka odebrana, na wyznaczenie liczby bajtów budujących odpowiedź posiada zarezerowane dwa bajty. 
+    Ciekawą obserwacją jest to, że odpowiedź równą 0x00 czyli OK można by zapisać przy pomocy jedynie jednego bajta, lecz optymalizacja
+    pamięci nie jest tutaj zastosowana.
 
     \begin{figure}[h!]
     \centering
