@@ -15,23 +15,31 @@
 						\item GCC 9.2;
 					\end{itemize}
 			\end{itemize}
-		\item Podłączenie do internetu w celu pobrania repozytorium oraz kompilacji programu uruchomieniowego
-		\item Instalacja
+		\item Podłączenie do internetu w celu pobrania repozytorium oraz kompilacji programu uruchomieniowego;
+		\item Komendy wywoływane w pierwszym oknie konsoli, w celu uruchomienia symulatora urządzenia:
 		\begin{enumerate}
-			\item git clone https://github.com/trunksBT/Almag\_RetDriverSimulator.git -{}-recursive
-			\item cd Almag\_RetDriverSimulator
+			\item git clone https://github.com/trunksBT/KorytkoMag\_RetSimulator.git -{}-recursive
+			\item cd KorytkoMag\_RetSimulator
 			\item make .
 			\item bash runBinary.sh
 		\end{enumerate}
+		\item Komendy wywoływane w drugim oknie konsoli, w celu uruchomienia sterownika urządzenia:
+		\begin{enumerate}
+			\item git clone https://github.com/trunksBT/KorytkoMag\_RetSimulator.git -{}-recursive
+			\item cd KorytkoMag\_RetSimulator
+			\item make .
+			\item bash runBinary.sh
+		\end{enumerate}
+		\item 
 	\end{itemize}
 \section{Zrzuty ekranu}
 	\begin{figure}[p]
-	\includegraphics[scale=0.3]{ExecutionOfMT.png}
+	\includegraphics[scale=0.3]{ExecutionOnSeverityInfo.png}
 	\caption{Zrzut ekranu z wykonania testów modułowych}
 	\end{figure}
 	
 	\begin{figure}[p]
-	\includegraphics[scale=0.3]{ExecutionOfUT.png}
+	\includegraphics[scale=0.3]{ExecutionOnSeverityInfo.png}
 	\caption{Zrzut ekranu z wykonania testów jednostkowych}
 	\end{figure}
 	
@@ -41,7 +49,7 @@
 	\end{figure}
 	
 	\begin{figure}[p]
-	\includegraphics[scale=0.3]{ExecutionOnSeverityTrace.png}
+	\includegraphics[scale=0.3]{ExecutionOnSeverityInfo.png}
 	\caption{Zrzut ekranu z uruchomienia programu bez odfiltrowania logów}
 	\end{figure}
 
