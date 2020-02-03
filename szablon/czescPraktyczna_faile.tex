@@ -1,7 +1,7 @@
 \chapter{Plan dalszego rozwoju}
 \section{Porażki odnośnie planu początkowego}
     W celu przesłania wiadomości zapisanej w systemie heksadecymalnym przy pomocy interfejsu USB <-> RS-485
-    należy dokonać konwersji na postać binarną. Zarówno wiadomość odebrana jak i wysłana może w trakcie transmisji ulec wybrakowaniu bądź
+    należy dokonać konwersji na postać binarną. Zarówno wiadomość odebrana, jak i wysłana może w trakcie transmisji ulec wybrakowaniu bądź
     zmianie zawartości. W tym celu ramka HDLC protokołu AISG 2.0 posiada dwa bajty przeznaczone na walidację takowej wiadomości a jest to wykonywane
     dzięki wyliczeniu sumy CRC-16. W związku z tym, że istnieje wiele implementacji algorytmu wyliczania sumy CRC, a każda z nich może różnić się od siebie zarówno:
     definicją wyrażenia wielomianowego, jego postacią oraz wartością początkową, próbowałem na podstawie ,,podsłuchanej'' wiadomości przy pomocy
@@ -23,24 +23,24 @@
     definiuje procedurę do jakiej należy się zastosować w takiej sytuacji, z którą nie zaznajomiłem się.
 \subsection{Interwały czasowe}
     Protokół AISG 2.0 definiuje szereg interwałów których obecność można zaobserwować podczas komunikacji z urządzeniem. Jednym z nich jest
-    utrzymanie urządzenia w stanie zaadresowanym. W przypadku kiedy urządzenie podrzędne nie otrzyma jakiejkolwiek wiadomości w przeciągu 3 minut
+    utrzymanie urządzenia w stanie zaadresowanym. W przypadku kiedy urządzenie podrzędne nie otrzyma jakiejkolwiek wiadomości w ciągu 3 minut
     od jego zaadresowania, przechodzi ono w stan niezaadresowany, po czym ponownie należy zestawić warstwę fizyczną oraz łącza danych wraz
     z całą procedurą XID negocjacji. Kolejnymi zależnościami czasowymi są odstępy pomiędzy wysłaniem wiadomości a rozpoczęciem nasłuchiwania na odpowiedź.
     Problemem mógłby być scenariusz w którym wysyłamy wiadomość do urządzenia podrzędnego, a jest ono na przykład w trakcie procedury kalibracji która może 
     trwać ok 2 minuty. Jako odpowiedź możemy wtedy otrzymać ramkę typu S której stan nazwano RNR czyli z angielskiego ,,Receiver Not Ready''. 
-    W tej sytuacji należy odczekać pewien kwant czasu a następnie ponowić komunikację.
+    W tej sytuacji należy odczekać pewien kwant czasu, a następnie ponowić komunikację.
 \subsection{Ustalanie maski}
     RetSimulator jest urządzeniem które często posiada wbudowane wyjście RS-485, co oznacza że można podłączyć dwa bądź więcej urządzeń szeregowo. 
-    W takiej sytuacji na wiadomość pochodzącą z urządzenia nadrzędne zaadresowaną wartością 0xFF, każde z nich wyśle swoją odpowiedź co niesie ze sobą wiele problemów.
+    W takiej sytuacji na wiadomość pochodzącą z urządzenia nadrzędne zaadresowaną wartością 0xFF, każde z nich wyśle swoją odpowiedź, co niesie ze sobą wiele problemów.
     Po stronie urządzenia nadrzędne zaobserwujemy to w ten sposób, że nasłuchiwane w czasie standardowego interwału czasu bajty
     pochodzić będą naprzemian od dwóch bądź wiekszej liczby urządzeń. Algorytm definiowania maski skutecznie rozwiązuje ten problem. 
     Podczas tej procedury dążymy do ustalenia unikalnego identyfikatora każdego z urządzeń, w celu wysłania wiadomości z żadaniem zaadresowania,
-    na którą odpowie tylko jedno urządzenie. Realizacja powyższego problemu często korzysta z algorytmów przeszukiwania binarnego w trakcie którego
+    na którą odpowie tylko jedno urządzenie. Realizacja powyższego problemu często korzysta z algorytmów przeszukiwania binarnego, w trakcie którego
     zadaniem jest ustalenie unikalnego identyfikatora urządzenia podrzędnego. Z racji tego, że podczas pracy inżynierskiej
     przewidywano uruchomienie instancji sterownika dla każdego urządzenia osobno, pominięto implementację wyżej wymienionej logiki.
 \section{Rozbudowa aplikacji o nowe funkcjonalności}
     Dzięki elastycznej i skalowalnej architekturze oprogramowania, bez większego problemu powinna być możliwość zaimplementowania rzeczywistej
     warstwy fizycznej. Pozwoli to na podłączenie prawdziwego urządzenia w celu wykonywania zabiegów testowych na nim. Po zrealizowaniu
-    tego etapu, planowane jest dodanie kolejnych komend serwowanych przez protokół AISG 2.0 takich jak: aktualizacja oprogramowania, 
+    tego etapu planowane jest dodanie kolejnych komend serwowanych przez protokół AISG 2.0 takich jak: aktualizacja oprogramowania, 
     reset twardy czy miękki oraz ustawienie kąta. Wdrożenie do aplikacji mechanizmu wielowątkowości, podłączenie więcej niż jednego urządzenia również będzie osiągalne.
     Warstwy dynamicznego budowania wiadomości pozwalają również zmniejszyć czas wdrożenia najnowszej wersji protkołu AISG w wersji 3.0.

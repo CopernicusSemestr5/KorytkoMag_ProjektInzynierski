@@ -14,15 +14,15 @@
     
     \section{Ustanowienie prędkości połączenia}
     Parametrem tej komendy jest adres portu 6666, z którego korzysta sterownik
-    do nawiązania połączenia typu tcp na adresie 127.0.0.1 wraz z symulatorem urządzenia,
-    przy zastosowania wzorca Publish-Subscribe. Podczas tego połączenia protokół AISG 2.0 
+    do nawiązania połączenia typu tcp na adresie 127.0.0.1 wraz z symulatorem urządzenia
+    przy zastosowaniu wzorca Publish-Subscribe. Podczas tego połączenia protokół AISG 2.0 
     nie zakłada oczekiwania na odpowiedź od urządzenia podrzędnego oraz użyta biblioteka
     ZeroMQ również nie udostępnia możliwości wysłania odpowiedzi na taką wiadomość.
 
     \section{Skanowanie urządzeń}
     Parametrem tej komendy jest adres portu 5555, z którego korzysta sterownik
     do nawiązania połączenia typu tcp na adresie 127.0.0.1 wraz z symulatorem urządzenia,
-    przy zastosowania wzorca Żadanie-Odpowiedź. Jest to wzorzec, który zakłada otrzymanie 
+    przy zastosowaniu wzorca Żadanie-Odpowiedź. Jest to wzorzec, który zakłada otrzymanie 
     odpowiedzi na każdą wysłaną wiadomość, zanim kolejna zostanie nadana. Opisany mechanizm komunikacji
     aplikowalny jest również do wszystkich poniższych komend.
     Ciekawym elementem tej wiadomości jest to, że otrzymano kod producenta zarówno
@@ -49,7 +49,7 @@
 
     \section{Negocjacje parametrów HDLC}
     Cechą negocjacji parametrów przy pomocy ramek XID jest to, że jeśli żądana wartość jest wspierana przez
-    urządzenie podrzędne to odpowie ono wiadomością zawierającą te same parametry oraz te same wartości. 
+    urządzenie podrzędne, to odpowie ono wiadomością zawierającą te same parametry oraz te same wartości. 
     W przeciwnym wypadku otrzymanymi wartościami parametrów będą największe możliwe przez nie wspierane.
     Zaobserwowano to zjawisko w przypadku negocjacji wielkości payloadu
     \footnote{\label{Payload} Payload - Fragment wiadomości, który nie zawiera bajtów takich jak nagłówki bądź metadane a jedynie ,,istotne''

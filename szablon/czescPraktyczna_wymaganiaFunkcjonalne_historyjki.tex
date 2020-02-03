@@ -9,13 +9,13 @@
 			Jest to komenda wysyłana do urządzenia podrzędnego przy pomocy ramki XID.
 			\newline
 			Pierwsze dwa bajty o wartości 0xFF odpowiadają za zdefiniowanie adresu urządzenia docelowego. 
-			W tym przypadku celem jest synchronizacja prędkości połączenia ze wszystkimi urządzeniami na lini, które nie są zaadresowane a więc jest to wiadomość typu ,,broadcast''.
+			W tym przypadku celem jest synchronizacja prędkości połączenia ze wszystkimi urządzeniami na lini, które nie są zaadresowane, a więc jest to wiadomość typu ,,broadcast''.
 			\newline
 			Kolejne dwa bajty kontrolne o wartości 0xBF są charakterystyczne dla ramki XID.
 			\newline
-			Następne dwa bajty o wartości 0x81 identyfikują format wiadomości XID, co oznacza że jest to wiadomość z kategorii przypisania adresu.
+			Następne dwa bajty o wartości 0x81 identyfikują format wiadomości XID, co oznacza, że jest to wiadomość z kategorii przypisania adresu.
 			\newline
-			Potem napotykamy kolejne dwa bajty o wartości 0xF0 które są identyfikatorem grupy, co mówi nam jakie kolejne bajty dopuszczalne są w dalszej części wiadomości.
+			Potem napotykamy kolejne dwa bajty o wartości 0xF0, które są identyfikatorem grupy, co mówi nam jakie kolejne bajty dopuszczalne są w dalszej części wiadomości.
 			\newline
 			Urządzenie podrzędne w celu umożliwienia mu zdekodowania wiadomości, otrzymuje w wiadomości długość grupy, czyli dwa bajty w tym przypadku o wartości 0x08 i jest to 
 			liczba bajtów która pojawi się następnie, aż do pierwszego bajta sumy CRC.
@@ -88,11 +88,11 @@
 		\subsection{Kalibracja - Calibrate}
 			Jako użytkownik chcę skalibrować urządzenie.
 			\newline\newline
-			Z racji tego, że wiadomości tej warstwy korzystają z ramki informacyjnej, inną rolę pełni bajt kontrolny. Poza stałymi wartości bitów w bajcie, 
+			Z racji tego, że wiadomości tej warstwy korzystają z ramki informacyjnej, inną rolę pełni bajt kontrolny. Poza stałymi wartości bitów w bajcie 
 			każdorazowe wysłanie i odebranie wiadomości zmienia wartość sekcji P/F wcześniej wspomnianej. 
-			Dzięki temu można w łatwy sposób identyfikować czy wiadomość którą otrzymujemy jest ta której oczekiwaliśmy. 
-			W związku z tym dla pierwszej wiadomości wysłanej przez urządzenie nadrzędne poprawną wartością, będzie 0x10.
+			Dzięki temu można w łatwy sposób identyfikować czy wiadomość, którą otrzymujemy jest ta której oczekiwaliśmy. 
+			W związku z tym dla pierwszej wiadomości wysłanej przez urządzenie nadrzędne poprawną wartością będzie 0x10.
 			\newline
 			Kolejnym bajtem jest kod procedury, który ma wartość 0x31, co oznacza, że oczekujemy kalibracji urządzenia będącego zwykłym pojedynczym RET-em.
 			\newline
-			Z racji tego, że podczas tej komendy nie jest przesyłana żadna wartość dla tej procedury, dwa bajty zaalokowane dla długości parametru posiadają wartość \{0x00, 0x00\}
+			Z racji tego, że podczas tej komendy nie jest przesyłana żadna wartość dla tej procedury, dwa bajty zaalokowane dla długości parametru mają wartość \{0x00, 0x00\}
