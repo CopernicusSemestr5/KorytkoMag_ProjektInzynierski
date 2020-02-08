@@ -56,7 +56,6 @@
   framextopmargin=5pt,
   showstringspaces=false
  }
-\renewcommand{\lstlistingname}{Tabela}
 
 \RequirePackage{enumitem}
 \setlist{nolistsep}
@@ -83,9 +82,6 @@
 \AtBeginDocument{\updatepdfmeta}
 
 \frenchspacing
-
-\renewcommand{\partname}{}
-\renewcommand{\thepart}{}
 
 % custom commands
 \newcommand{\dotline}[2]{\changefont{10}\makebox[#1][#2]{\dotfill}}

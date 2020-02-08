@@ -62,16 +62,18 @@
 
 \makeatother
 
-\renewcommand{\partname}{}
-
 \begin{document}
+  \renewcommand{\partname}{} % for the empty part title
+  \renewcommand{\thepart}{} % for the empty part title
+
   \include{front}
-  \tableofcontents
+  \include{spis_tresci}
   \include{WykazSkrotowISymboli}
   \include{wstep_wprowadzenie_celPracy_motywacja}
   \include{zakres_bazaDanych_backEnd}
   \include{zakres_frontend_testowanie}
-  \part{Cześć Przeglądowa}
+
+  \part{Część Przeglądowa}
   \include{czescPrzegladowa_RET}
   \include{czescPrzegladowa_AISG_warstwy}
   \include{czescPrzegladowa_AISG_HDLC}
@@ -79,7 +81,7 @@
   \include{czescPrzegladowa_AISG_typyRamekHDLC_U_I}
   \include{czescPrzegladowa_SOLID}
 
-  \part{Cześć Praktyczna}
+  \part{Część Praktyczna}
   \include{czescPraktyczna_WzorceProjektowe}
   \include{czescPraktyczna_wymaganiaFunkcjonalne_historyjki}
   \include{czescPraktyczna_analizaNawiazanejKomunikacji}
