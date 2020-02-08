@@ -1,5 +1,5 @@
 \chapter{Wymagania funkcjonalne}
-	\section{Historyjki użytkownika ( Warstwa fizyczna łącza danych ) - nazwa komendy}
+	\section{Opis wymagań dla warstwy fizycznej oraz łącza danych wraz z nazwą komendy}
 		Częstą praktyką modelowania etapu łączenia z RET-em jest użycie przy maszyny stanowej w związku z czym, z poniższych funkcjonalności należy korzystać zgodnie z zadaną kolejnością.
 		Dla każdej z poniższych ramek wyznaczono część wspólną składającą się z czterech bajtów. Pierwszym z nich jest bajt flagi startu, która oznacza początek wiadomości i ma wartość 0x7E.
 		Koleje bajty budują ramkę XID, I, U, S o których wspomniano wcześniej. Następnie dodaje się dwubajtową sumę CRC oraz na samym końcu flagę stopu, która jest tej samej wartości co flaga startu i oznacza koniec nadawania wiadomości.
@@ -15,7 +15,7 @@
 			\newline
 			Następne dwa bajty o wartości 0x81 identyfikują format wiadomości XID, co oznacza, że jest to wiadomość z kategorii przypisania adresu.
 			\newline
-			Potem napotykamy kolejne dwa bajty o wartości 0xF0, które są identyfikatorem grupy, co mówi nam jakie kolejne bajty dopuszczalne są w dalszej części wiadomości.
+			Potem napotkano kolejne dwa bajty o wartości 0xF0, które są identyfikatorem grupy, co definiuje nam jakie kolejne bajty dopuszczalne są w dalszej części wiadomości.
 			\newline
 			Urządzenie podrzędne w celu umożliwienia mu zdekodowania wiadomości, otrzymuje w wiadomości długość grupy, czyli dwa bajty w tym przypadku o wartości 0x08 i jest to 
 			liczba bajtów która pojawi się następnie, aż do pierwszego bajta sumy CRC.
@@ -40,8 +40,8 @@
 			będzie identyfikowane oraz z racji tego, że długość parametru ma wartość 0x01, to wartość wynosi 0x03. W przypadku projektu, nie będzie miał on większego znaczenia
 			aczkolwiek w momencie kiedy urządzenia typu Ret połączone są ze sobą szerogowo, potrzeba jest możliwość wysłania wiadomości do na przykład drugiego w łańcuchu.
 			\newline
-			Ostatnim parametrem jest 0x04 który mówi nam o tym, że urządzenie nadrzędne uważa, że po drugiej stronie jest jedno z urządzeń zdefiniowanych 
-			według standardu AISG 2.0, w tym przypadku długość również wynosi 0x01 a wartość to 0x01. Oznacza ona, że próbujemy nawiązać komunikację z pojedyncznym RET-em.
+			Wartość ostatniego parametru równa 0x04, definiuje typ urządzenia podrzędnego, z którym inicjalizowana jest komunikacja. Długość wynosi 0x01 a wartość to 0x01.
+			Oznacza ona, że podejmowana jest próba nawiązania komunikacji z pojedyncznym RET-em.
 			Dla porównania istnieją również urządzenia takie jak MultiRET, dzięki któremu można zmieniać wartość nachylania kąta głównej wiązki anteny na wielu osiach czy płaszczyznach.
 		\subsection{Negocjacja parametrów HDLC - HDLCParameters}
 			Jako użytkownik chcę ustalić maksymalny rozmiar nadawanej jak i odbieranej ramki typu I oraz maksymalną liczbę ramek jednocześnie możliwych do wysłania bądź odebrania.
@@ -81,7 +81,7 @@
 			Z racji tego, że implementowana wersja protokołu AISG 2.0 jest jedną z wielu ( istnieją jeszcze dwie wcześniejsze: 1.0, 1.1 oraz najnowsza 3.0), potrzeba zdefiniować według którego standardu budowane są
 			wiadomości przez urządzenie nadrzędne oraz rozpoznawane przez podrzędne.
 			Bajt identyfikujący parametr dla tej wiadomości ma wartość 0x14, długość parametru to 0x01 a jej wartość to 0x02.
-	\section{Historyjki użytkownika ( Warstwa aplikacyjna ) - nazwa komendy}
+	\section{Opis wymagań dla warstwy aplikacyjnej wraz z nazwą komendy}
 		Po pomyślnym zestawieniu warstwy fizycznej posiadamy zdefiniowany wszystkie charakterystyki połączenia, które pozwolą w jednoznaczny sposób porozumieć sie z urządzeniem oraz żądać odpowiedzi na wysłaną wiadomość.
 		Kolejne komendy są już żądaniami wysokoziomowymi, które definiują użyteczne dla klienta polecenia służąca do zarządzania RET-em. Jest ich znacznie więcej, aczkolwiek obranym celem pracy inżynierskiej było pomyślne przeprowadzenie
 		kalibracji urządzenia, co pozwala w dalszym etapie ustawić zadany kąt odchylenia głównej wiązki sygnału z anteny.

@@ -59,11 +59,11 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         Znanych jest wiele wzorców komunikacji pomiędzy komponentowej aczkolwiek w projekcie użyto dwa najbardziej znane: Publikuj-Subskrybuj oraz Żadanie-Odpowiedź.
         Pierwszy z nich efektownie realizuje zasadę odwrócenia zależności, ponieważ sterownik urządzenia nadrzędne na początkowym etapie nie musi znać
         ilości podłączonych do linii urządzeń. Drugi namiast pozwala zrealizować podejście do transmisji z urządzeniem znane jako półdupleks, wymagane podczas
-        wywoływania komend zestawiających warstwę łącza danych oraz aplikacyjnej. Sęk w tym, że obydwa wzorce wymagają innego zestawu komend w celu
+        wywoływania komend zestawiających warstwę łącza danych oraz aplikacyjnej. Głównym problem jest to, że obydwa wzorce wymagają innego zestawu komend w celu
         konfiguracji połączenia ze slotami systemowymi. W projekcie zaimplementowano jeden kontroler, który zarządza zestawianiem wymaganych warstw OSI w trakcie
         ciągłego uruchomienia sterownika, co osiągnięto dzięki dynamicznemu podmianie strategii komunikacji z Publikuj-Subskrybuj na Żadanie-Odpowiedź.
-        Zaobserwowano pewien ,,zły zapach'' kodu polegający na prewencyjnemu rzuceniu wyjątku w przypadku gdyby programista wywołał niepoprawną metode ze strategii.
-        Strategia jest potężnym narzędziem, nad którym zaplanowane zostały dalsze plany analizy oraz zrozumienia, w celu eliminacji tego typu wywołań.
+        Zaobserwowano pewne złe następstwo niepoprawnego użycia wzorca strategii polegające na prewencyjnemu rzuceniu wyjątku w przypadku gdyby programista wywołał niepoprawną metode.
+        W związku z tym, podczas przyszłej rozbudowy programu, zastosowany zostanie inny wzorzec o nazwie most. 
         \lstinputlisting[
         language=C++,
         caption=Strategia komunikacji Żadanie-Odpowiedź dla urządzenia nadrzędnego]
@@ -83,7 +83,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         language=C++,
         caption=Konstruktor zrealizowany podejściem wstrzykiwania zależności]
         {Kod_Zrodlowy/DesignPatterns_DependencyInjection.cpp}
-    \subsection{Zabór zasobu jest inicjalizacją}
+    \subsection{Inicjowanie przy pozyskaniu zasobu}
         C++ w wersji 11-tej został rozbudowany o mechanizm inteligentnych wskaźników. ,,shared\_ptr<T>'' oraz ,,unique\_ptr<T>'' zmieniły sposób korzystania z
         dynamicznie alokowanej pamięci w sposób diametralny. Do tej pory dealokacja pamięci wskazywanej przez wskaźnik należała do obowiązków programisty.
         Dzięki podejściu tzw. RAII\footnote{\label{RAII} RAII - ang. Resource acquisition is initialization} dla ,,shared\_ptr<T>'', 
@@ -93,7 +93,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
 \section{Kreacyjne}
     \subsection{Budowniczy}
         Często zdarza się, że obiekt klasy wymaga modernizacji wielu z jego pól a realizacja konstruktora posiadającego trzy bądź więcej parametrów,
-        uznawana jest jako ,,brzydki zapach kodu'' oraz antywzorzec. W tej sytuacji z pomocą pojawia się wzorzec budowniczego, który podczas wywoływania metody 
+        uznawana jest za niepoprawną implementacje oraz antywzorzec. W tej sytuacji z pomocą pojawia się wzorzec budowniczego, który podczas wywoływania metody 
         zmieniającej stan obiektu, dokonuje zamierzonego celu, po czym zwraca referencję na obiekt na rzecz którego została wywołana metoda. 
         Umożliwia to szeregowe wywoływanie kolejnych modyfikatorów co znacznie oczyściło i zwiększyło czytelność programu. Istnieje wiele interpretacji tego wzorca projektowego,
         w których dodana jest metoda finalizująca budowanie obiektu.
