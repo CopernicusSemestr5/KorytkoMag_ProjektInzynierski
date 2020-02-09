@@ -19,7 +19,7 @@
 \subsection{Weryfikacja wiadomości pod względem obecności zarezerwowanych znaków}
     Z języka angielskiego ,,Byte stuffing''. Procedura polega na tym, że zarówno dla flagi startu jak i stopu zarezerwowana jest wartość 0x7E.
     Niestety urządzenie podrzędne może odpowiedzieć na przykład podczas procedur XID negocjacji, wiadomością zawierającą bajt 0x7E. Nieobsłużone
-    takie zjawisko spowoduje, że urządzenie nadrzędne zinterpretuje ten bajt jako bajt stopu, co jest niepożądane. W tym celu standard AISG 
+    takie zjawisko spowoduje, że urządzenie nadrzędne zinterpretuje ten bajt jako bajt stopu, co jest niepożądane\cite{ISO-IEC-13239}. W tym celu standard AISG 
     definiuje procedurę do jakiej należy się zastosować w takiej sytuacji, z którą nie zaznajomiłem się.
 \subsection{Interwały czasowe}
     Protokół AISG 2.0 definiuje szereg interwałów których obecność można zaobserwować podczas komunikacji z urządzeniem. Jednym z nich jest

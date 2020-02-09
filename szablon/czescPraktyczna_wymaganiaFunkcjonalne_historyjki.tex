@@ -1,5 +1,6 @@
 \chapter{Wymagania funkcjonalne}
 	\section{Opis wymagań dla warstwy fizycznej oraz łącza danych wraz z nazwą komendy}
+		\noindent
 		Częstą praktyką modelowania etapu łączenia z RET-em jest użycie przy maszyny stanowej w związku z czym, z poniższych funkcjonalności należy korzystać zgodnie z zadaną kolejnością.
 		Dla każdej z poniższych ramek wyznaczono część wspólną składającą się z czterech bajtów. Pierwszym z nich jest bajt flagi startu, która oznacza początek wiadomości i ma wartość 0x7E.
 		Koleje bajty budują ramkę XID, I, U, S o których wspomniano wcześniej. Następnie dodaje się dwubajtową sumę CRC oraz na samym końcu flagę stopu, która jest tej samej wartości co flaga startu i oznacza koniec nadawania wiadomości.
@@ -70,7 +71,7 @@
 			Bajt kontrolny posiada wartość 0x93 i oznacza żadanie ustalenia sposobu komunikacji z urządzeniem podrzędnym na tryb normalny, a więc taki w którym wysyła ono ramkę jedynie jako odpowiedź
 			na wcześniej nadaną przez urządzenie nadrzędne.
 		 \subsection{Negocjacja parametrów HDLC - 3GPPReleaseID}
-			Jako użytkownik chcę wynegocjować parameter HDLC urządzenia, jakim jest wspierana wersja 3GPP. \newline
+			Jako użytkownik chcę wynegocjować parameter HDLC urządzenia, jakim jest wspierana wersja 3GPP.
 			\newline\newline
 			Teraz można przejść do coraz bardziej szczegółowych parametrów jak ustanowienie numeru wersji standardu 3GPP.
 			Podczas tworzenia tej wiadomości znów skorzystano z ramki XID a więc należy zdefiniować identyfikator formatu, grupy oraz jej długość. Pierwsze dwie wartości są równe tym z komendy ,,AddressAssignment'' a długość ma wartość 0x03.
