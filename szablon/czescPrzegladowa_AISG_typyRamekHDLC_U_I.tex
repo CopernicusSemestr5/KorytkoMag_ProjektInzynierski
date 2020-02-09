@@ -25,14 +25,14 @@ Bajty budujące ramkę:
 \end{itemize}
 Wiadomości tego typu przy wielokrotnym zawołaniu żądania wykonania tej samej procedury posiadają zmienną wartość bajtu kontrolnego, co różni ją od ramki U czy XID. 
 \newline
-Proces ten w przypadku bitu który ustawiany jest na pozycji 4 bajtu kontrolnego P/F\footnote{\label{Bit P/F} P/F - ang. bit Pool/Final} służy do:
+Proces ten w przypadku bitu \textit{P/F} zlokalizowanego na pozycji o indeksie 4 bajtu kontrolnego:
 \begin{itemize}
 	\item Poinformowania urządzenia podrzędnego, że urządzenie nadrzędne żada odpowiedzi na właśnie przesyłaną wiadomość;
 	\item Poinformowania urządzenia nadrzędnego o zakończeniu nadawania odpowiedzi na wiadomość;
 \end{itemize}
 Wartość bitu na pozycji 0 jest zawsze równa 0. 
-Bity od piątego do siódmego włącznie definiują nam licznik wiadomości odebranych przez urządzenie nadrzędne, czyli N(R)\footnote{\label{N(R)} N(R) - ang. Receive sequence number}. 
-Bity od pierwszego do trzeciego włącznie definiują nam licznik wiadomości wysłanych przez urządzenie nadrzędne, czyli N(S)\footnote{\label{N(S)} N(S) - ang. Send sequence number}.
+Bity od piątego do siódmego włącznie definiują nam licznik wiadomości odebranych przez urządzenie nadrzędne, czyli \textit{N(R)}. 
+Bity od pierwszego do trzeciego włącznie definiują nam licznik wiadomości wysłanych przez urządzenie nadrzędne, czyli \textit{N(S)}.
 Na poniższym diagramie przedstawiono ewaluację bajtu kontrolnego dla kolejnych wiadomości warstwy aplikacyjnej.
 \begin{figure}[h!]
 \centering

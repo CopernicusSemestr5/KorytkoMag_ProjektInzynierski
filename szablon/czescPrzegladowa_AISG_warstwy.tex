@@ -1,8 +1,8 @@
 \chapter{Protokół AISG 2.0}
 	Symulator sterownika ma za zadanie odebrać od użytkownika polecenie w postaci komendy wieloargumentowej, 
-	która zawierała będzie nazwę procedury rozpoznawanej przez odpowiednie warstwy protokołu komunikacyjnego AISG v2.0
-	\footnote{\label{AISG} Protokół AISG v2.0 - https://aisg.org.uk/files/AISG-v2.0.pdf} realizującego podzbiór modelu OSI
-	\footnote{\label{Model OSI} Model OSI - model odniesienia łączenia systemu otwartych opisujący strukturę komunikacji sieciowej, https://pl.wikipedia.org/wiki/Model\_OSI}. % MOVE TO BILBIOGRAPHY
+	która zawierała będzie nazwę procedury rozpoznawanej przez odpowiednie warstwy protokołu komunikacyjnego \textit{AISG v2.0}
+	realizującego podzbiór \textit{modelu OSI}.
+	
 	\section{Warstwy}
 		\subsection{1-sza - Fizyczna}
 		Realizacja projektu w kierunku emulacji fizycznego połączenia do urządzenia niesie ze sobą pewne zmiany na tej warstawie.\newline
@@ -10,18 +10,16 @@
 		\subsection{2-ga - Łącza danych}
 		Rolą tej warstwy jest:
 		\begin{itemize}
-			\item Enkapsulacja\footnote{\label{Enkapsulacja} Enkapsulacja - https://pl.wikipedia.org/wiki/Kapsułkowanie} ramki HDLC Body % MOVE TO BILBIOGRAPHY
-			\footnote{\label{HDLC Body} HDLC Body - Ramka HDLC bez bajtów startu, stopu, sumy CRC.} do ramki HDLC
-			\footnote{\label{HDLC} HDLC - https://en.wikipedia.org/wiki/High-Level\_Data\_Link\_Control}: % MOVE TO BILBIOGRAPHY
+			\item Enkapsulacja[BIB] ramki \textit{HDLC Body} do ramki HDLC[BIB]
 			\begin{itemize}
-				\item Dodanie bitów startu i stopu;
-				\item Obliczenie oraz walidacja sumy CRC;\footnote{\label{CRC} Suma CRC16 - https://en.wikipedia.org/wiki/Cyclic\_redundancy\_check} % MOVE TO BILBIOGRAPHY
+				\item Dodanie \textit{bitów} startu i stopu;
+				\item Obliczenie oraz walidacja sumy CRC[BIB]
 			\end{itemize}
 			\item Budowa ramki typu XID podczas procedur negocjacji:
 			\begin{itemize}
 				\item Rozmiaru ramki;
 				\item Unikalnego identyfikatora urządzenia, na które składa się numer seryjny oraz kod producenta;
-				\item Wersji 3GPP oraz AISG urządzenia podrzędnego;
+				\item Wersji \textit{3GPP} oraz AISG urządzenia podrzędnego;
 				\item Adresu;
 			\end{itemize}
 			\item Budowa ramki typu U w celu ustanowienia normalnego trybu komunikacji;

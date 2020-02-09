@@ -51,9 +51,7 @@
     Cechą negocjacji parametrów przy pomocy ramek XID jest to, że jeśli żądana wartość jest wspierana przez
     urządzenie podrzędne, to odpowie ono wiadomością zawierającą te same parametry oraz te same wartości. 
     W przeciwnym wypadku otrzymanymi wartościami parametrów będą największe możliwe przez nie wspierane.
-    Zaobserwowano to zjawisko w przypadku negocjacji wielkości payloadu
-    \footnote{\label{Payload} Payload - Fragment wiadomości, który nie zawiera bajtów takich jak nagłówki bądź metadane a jedynie ,,istotne''
-    informacje.} dla wysłanej oraz otrzymanej ramki informacyjnej.
+    Zaobserwowano to zjawisko w przypadku negocjacji wielkości payloadu dla wysłanej oraz otrzymanej ramki informacyjnej.
     Urządzenie nadrzędne próbowało ustanowić dopuszczalną liczbę bitów na \{0xF0, 0x2D, 0x00, 0x00\} co daje wartość 61485,
     lecz urządzenie podrzędne odpowiedziało \{0x50, 0x02, 0x00, 0x00\} co po konwersji na system dziesiętny daje 20482 bity.
 

@@ -14,9 +14,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         wprowadzenie systemu wag bądź poleceń terminujących aktualnie zaplanowane zadania.
         Podczas implementacji sterownika zastosowano połączenie trzech wzorców projektowych a to wszystko dzięki potężnemu podejściu do organizacji
         struktury kodu jakim jest użycie komend. Zestawiając implementację interfejsu komendy oraz budowania konkretnej wiadomości dzięki fabryce
-        pozwala na zdefiniowanie klas ,,finalnych''
-        \footnote{\label{Klasa finalna} Klasa finalna - klasa po której nie można zdefiniwać relacji dziedziczenia} 
-        zawierających charakterystyczne dla każdej z komend wywołań. 
+        pozwala na zdefiniowanie \textit{klas finalnych} zawierających charakterystyczne dla każdej z komend wywołań. 
         \lstinputlisting[
             language=C++,
             caption=Interfejs komendy]
@@ -28,7 +26,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
     \newpage
     \subsection{Obiekt pusty}
         Znaną przypadłością w językach obiektowych jest wykonywanie dalszej akcji w zależności od stanu pewnego z obiektów.
-        W przypadku korzystania ze wskaźników dobrą praktyką jest każdorazowa weryfikacja czy jego wartość nie jest równa null.
+        W przypadku korzystania ze wskaźników dobrą praktyką jest każdorazowa weryfikacja czy jego wartość nie jest równa \textit{null}.
         Wykorzystanie klasy która implementuje interfejs kontrolera, w sposób neutralny sprawia, że zawsze bezpieczne będzie wywołanie na jej obiekcie 
         instancjonującym którejkolwiek z metod.
         \lstinputlisting[
@@ -86,7 +84,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
     \subsection{Inicjowanie przy pozyskaniu zasobu}
         C++ w wersji 11-tej został rozbudowany o mechanizm inteligentnych wskaźników. ,,shared\_ptr<T>'' oraz ,,unique\_ptr<T>'' zmieniły sposób korzystania z
         dynamicznie alokowanej pamięci w sposób diametralny. Do tej pory dealokacja pamięci wskazywanej przez wskaźnik należała do obowiązków programisty.
-        Dzięki podejściu tzw. RAII\footnote{\label{RAII} RAII - ang. Resource acquisition is initialization} dla ,,shared\_ptr<T>'', 
+        Dzięki podejściu tzw. RAII dla ,,shared\_ptr<T>'', 
         w przypadku destrukcji wszystkich wskaźników odnoszących się do wcześniej zaalokowanego obszaru pamięci,
         kompilator przy pomocy destruktora wywołuje komendę ,,delete'' automatycznie, dzięki czemu programista jest ustrzeżony przed niepożądanym wyciekiem pamięci.
 
@@ -94,7 +92,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
     \subsection{Budowniczy}
         Często zdarza się, że obiekt klasy wymaga modernizacji wielu z jego pól a realizacja konstruktora posiadającego trzy bądź więcej parametrów,
         uznawana jest za niepoprawną implementacje oraz antywzorzec. W tej sytuacji z pomocą pojawia się wzorzec budowniczego, który podczas wywoływania metody 
-        zmieniającej stan obiektu, dokonuje zamierzonego celu, po czym zwraca referencję na obiekt na rzecz którego została wywołana metoda. 
+        zmieniającej stan obiektu, dokonuje zamierzonego celu, po czym zwraca referencję na obiekt na rzecz którego została wywołana \textit{metoda}. 
         Umożliwia to szeregowe wywoływanie kolejnych modyfikatorów co znacznie oczyściło i zwiększyło czytelność programu. Istnieje wiele interpretacji tego wzorca projektowego,
         w których dodana jest metoda finalizująca budowanie obiektu.
         \lstinputlisting[
