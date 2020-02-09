@@ -27,7 +27,7 @@
     wspomniany wcześniej symulator urządzenia powstał niemalże za darmo, co uznaję za bardzo duży sukces z dziedziny projektowania architektury oprogramowania.
     Kolejną zaletą utworzenia symulatora urządzenia jest umożliwienie testów komponentowych realizując regułę czarnej skrzynki, co pozwoli w przyszłości
     znacznie skrócić czas testowania sterownika pod względem błędów logicznych.
-    \subsection{Weryfikacja wiadomości pod względem obecności zarezerwowanych znaków}
+    \subsection{Podmiana bajtów o wartości flagi startu/stopu}
     Z języka angielskiego ,,Byte stuffing''. Procedura polega na tym, że zarówno dla flagi startu jak i stopu zarezerwowana jest wartość 0x7E.
     Niestety urządzenie podrzędne może odpowiedzieć na przykład podczas procedur XID negocjacji, wiadomością zawierającą bajt 0x7E. Nieobsłużone
     takie zjawisko spowoduje, że urządzenie nadrzędne zinterpretuje ten bajt jako bajt stopu, co jest niepożądane\cite{ISO-IEC-13239}. W tym celu standard AISG 

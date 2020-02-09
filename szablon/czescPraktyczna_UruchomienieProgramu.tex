@@ -3,21 +3,23 @@
         \item Uruchomienie systemu Manjaro Linux;
         \item Podłączenie do internetu w celu pobrania repozytorium;
         \item Konfiguracja środowiska (pomiń w przypadku posiadania kompletu):
-        
-            \item sudo cmake
-            \item cmake
-        \item otwarcie pierwszej konsoli oraz wywołanie poniższych komend, w celu uruchomienia symulatora urządzenia:
+        \begin{enumerate}
+            \item ,,sudo pacman --sync boost''
+            \item ,,sudo pacman --sync cmake''
+            \item ,,sudo pacman --sync git''
+        \end{enumerate}
+        \item otwarcie pierwszego okna konsoli oraz wywołanie poniższych komend, w celu uruchomienia symulatora urządzenia:
 		\begin{enumerate}
 			\item ,,git clone https://github.com/trunksBT/KorytkoMag\_RetSimulator.git -{}-recursive''
 			\item ,,cd KorytkoMag\_RetSimulator''
-			\item ,,make .''
+			\item ,,cmake .''
 			\item ,,bash runBinary.sh''
 		\end{enumerate}
-		\item otwarcie drugiej konsoli, w celu uruchomienia sterownika:
+		\item otwarcie drugiego okna konsoli oraz wywołanie poniższych komend, w celu uruchomienia sterownika:
 		\begin{enumerate}
 			\item ,,git clone https://github.com/trunksBT/KorytkoMag\_RetDriverSimulator.git -{}-recursive''
 			\item ,,cd KorytkoMag\_RetDriverSimulator''
-			\item ,,make .''
+			\item ,,cmake .''
 			\item ,,bash runBinary.sh''
 			\item Wywołanie komend zgodnie z diagramem sekwencji zatytułowanym ,,KalibracjaRETa''
 			\item Aby zakończyć trzeba wpisać ,,exit''
