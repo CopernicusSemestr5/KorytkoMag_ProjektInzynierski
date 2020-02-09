@@ -1,21 +1,21 @@
 @startuml
 
-participant Driver
-participant Device
+participant Urządzenie_Nadrzędne
+participant Urządzenie_Podrzędne
 
-Driver -> Device : 10 (‭0001 0000‬)
-Device -> Driver : 30 (‭0011 0000‬)
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : 10 (‭0001 0000‬)
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : 30 (‭0011 0000‬)
 ......
-Driver -> Device : 32 (‭0011 0010‬)
-Device -> Driver : 52 (‭0101 0010‬)
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : 32 (‭0011 0010‬)
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : 52 (‭0101 0010‬)
 ......
-Driver -> Device : 54 (‭0101 0100‬)
-Device -> Driver : 74 (‭0111 0100‬)
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : 54 (‭0101 0100‬)
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : 74 (‭0111 0100‬)
 ......
-Driver -> Device : 76 (‭0111 0110‬)
-Device -> Driver : 96 (‭1001 0110‬)
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : 76 (‭0111 0110‬)
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : 96 (‭1001 0110‬)
 ......
-Driver -> Device : 98 (‭1001 1000‬)
-Device -> Driver : B8 (‭1011 1000‬)
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : 98 (‭1001 1000‬)
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : B8 (‭1011 1000‬)
 
 @enduml
