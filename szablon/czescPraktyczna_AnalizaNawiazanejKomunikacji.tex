@@ -1,10 +1,11 @@
 \chapter{Analiza nawiązanej komunikacji}
     \begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.70]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page1.png}
-    \caption{Ustanowienie prędkości połączenia wraz z początkowym skanowaniem urządzeń/
-        \newline(Opracowanie własne)}
-    \end{figure}
+        \centering
+        \includegraphics[scale=0.70]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page1.png}
+        \caption{Ustanowienie prędkości połączenia wraz z początkowym skanowaniem urządzeń
+            \newline(Opracowanie własne)}
+        \label{fig:DiagramSequence_LinkSpeed_DeviceScan}
+        \end{figure}
     \newpage
 
     Na diagramach sekwencji przedstawiono komendy wywoływane przez użytkownika
@@ -36,10 +37,11 @@
     jest prawdą dla każdej następnej wiadomości.
  
     \begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page2.png}
-    \caption{Żadanie adresacji oraz dodatkowe skanowanie urządzeń.
-        \newline(Opracowanie własne)}
+        \centering
+        \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page2.png}
+        \caption{Żadanie adresacji oraz dodatkowe skanowanie urządzeń.
+            \newline(Opracowanie własne)}
+        \label{fig:DiagramSequence_AddressAssignment_SecondDeviceScan}
     \end{figure}
 
     \section{Ponowne skanowanie urządzeń}
@@ -70,16 +72,18 @@
     pamięci nie jest tutaj zastosowana.
 
     \begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page3.png}
-    \caption{Negocjacja rozmiaru okna oraz payloadu ramki informacyjnej oraz ustanowienie normalnego trybu komunikacji.
-        \newline(Opracowanie własne)}
+        \centering
+        \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page3.png}
+        \caption{Negocjacja rozmiaru okna oraz payloadu ramki informacyjnej oraz ustanowienie normalnego trybu komunikacji.
+            \newline(Opracowanie własne)}
+        \label{fig:DiagramSequence_HDLCParameters_SNRM}
     \end{figure}
 
     \begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page4.png}
-    \caption{Negocjacja pozostałych parametrów HDLC oraz żadanie kalibracji urządzenia.
+        \centering
+        \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page4.png}
+        \caption{Negocjacja pozostałych parametrów HDLC oraz żadanie kalibracji urządzenia.
         \newline(Opracowanie własne)}
+        \label{fig:DiagramSequence_3GPP_AISGVersion_Calibrate}
     \end{figure}
 
