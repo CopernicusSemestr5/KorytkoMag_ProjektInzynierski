@@ -3,7 +3,7 @@
 		\noindent
 		Częstą praktyką modelowania etapu łączenia z RET-em jest użycie przy maszyny stanowej w związku z czym, z poniższych funkcjonalności należy korzystać zgodnie z zadaną kolejnością.
 		Dla każdej z poniższych ramek wyznaczono część wspólną składającą się z czterech bajtów. Pierwszym z nich jest bajt flagi startu, która oznacza początek wiadomości i ma wartość 0x7E.
-		Koleje bajty budują ramkę XID, I, U, S o których wspomniano wcześniej. Następnie dodaje się dwubajtową sumę CRC oraz na samym końcu flagę stopu, która jest tej samej wartości co flaga startu i oznacza koniec nadawania wiadomości.
+		Koleje bajty budują ramkę XID, I, U czy S. Następnie dodaje się dwubajtową sumę CRC oraz na samym końcu flagę stopu, która jest tej samej wartości co flaga startu i oznacza koniec nadawania wiadomości.
 		\subsection{Ustanowienie prędkości połączenia - SetLinkSpeed}
 			Jako użytkownik chcę ustanowić prędkość transmisji na 9.6 kbps.
 			\newline\newline

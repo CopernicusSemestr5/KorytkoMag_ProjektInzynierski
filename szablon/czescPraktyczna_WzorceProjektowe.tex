@@ -1,5 +1,5 @@
 \chapter{Wzorce projektowe}
-W latach, kiedy programowanie obiektowe nabierało coraz większego rozpędu, wiele osób natrafiało na grupę problemów pewnej kategorii.
+W latach, kiedy programowanie obiektowe stawało się bardziej popularne, wiele osób natrafiało na grupę problemów pewnej kategorii.
 Podczas wielokrotnych prób ich rozwiązywania, różne osoby dochodziły do wspólnych wniosków odnośnie do architektury kodu źródłowego tworzonego w celu ich rozwiązania.
 Napotykane wyzwania rozpoczęto dzielić według trzech kategorii: behawioralne, strukturalne oraz kreacyjne. Tak oto to powstały wzorce projektowe.
 Obszerna znajomość tej niemałej dziedziny informatyki pozwala spojrzeć na kolejne zadania w znacznie bardziej zaawansowany sposób aniżeli wcześniej.
@@ -40,10 +40,11 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
     \newpage
     \subsection{Metoda szablonowa}
         Wprowadzenie systemu walidacji argumentów podanych przez użytkownika gwarantuje bezpieczne wykonywanie akcji niskopoziomowych takich
-        jak wysłanie wiadomości do urządzenia, bez zbędnego umieszczanie logiki weryfikacji w dalszym etapie. W dodatku otworem staje
-        możliwość lekkiej korekcji podanej komendy bądź umożliwienie procedurze automatycznego pobrania wcześniej zapisanych w bazie danych wartości,
-        których wielokrotne podawanie może zmużyć klienta. Obecność komendy ,,execute'' pozwala połączyć wywołanie powyższych funkcji za pomocą jednego polecenia,
-        nie posiadając wiedzy o tym jakiego typu procedury weryfikacji sterownik będzie próbował dokonać. Tę możliwość osiągnięto dzięki efektownemu wykorzystaniu
+        jak wysłanie wiadomości do urządzenia, bez zbędnego umieszczanie logiki weryfikacji w dalszym etapie. Zastosowanie tego wzorca umożliwi w przyszłości wdrożenie dodatkowych mechanizmów.
+        Jednym z nich jest automatycznie pobranie długiego adresu portu na który ma zostać wysłana komenda, w przypadku podaniu klucza obiektu w bazie danych. 
+        Natomiast następnym jest funkcjonalność automatycznej korekty w przypadku zaistniałego błędu syntaktycznego we wprowadzanej przez użytkownika komendzie.
+        Obecność komendy ,,execute'' pozwala połączyć wywołanie powyższych funkcji za pomocą jednego polecenia,
+        nie posiadając wiedzy o tym jakiego typu procedury weryfikacji sterownik będzie próbował dokonać. Powyższą funkcjonalność osiągnięto dzięki efektownemu wykorzystaniu
         funkcji wirtualnych.
         \lstinputlisting[
             language=C++,
@@ -82,10 +83,9 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         caption=Konstruktor zrealizowany podejściem wstrzykiwania zależności]
         {Kod_Zrodlowy/DesignPatterns_DependencyInjection.cpp}
     \subsection{Inicjowanie przy pozyskaniu zasobu}
-        C++ w wersji 11-tej został rozbudowany o mechanizm inteligentnych wskaźników. ,,shared\_ptr<T>'' oraz ,,unique\_ptr<T>'' zmieniły sposób korzystania z
-        dynamicznie alokowanej pamięci w sposób diametralny. Do tej pory dealokacja pamięci wskazywanej przez wskaźnik należała do obowiązków programisty.
-        Dzięki podejściu tzw. RAII dla ,,shared\_ptr<T>'', 
-        w przypadku destrukcji wszystkich wskaźników odnoszących się do wcześniej zaalokowanego obszaru pamięci,
+        Do implementacji pracy użyto kompilator GCC wspierający język C++ w wersji 11-tej, który posiada wbudowany mechanizm inteligentnych wskaźników. ,,shared\_ptr<T>'' oraz ,,unique\_ptr<T>''
+        zmieniły sposób korzystania z dynamicznie alokowanej pamięci w sposób diametralny. Do tej pory dealokacja pamięci wskazywanej przez wskaźnik należała do obowiązków programisty.
+        Dzięki podejściu tzw. RAII dla ,,shared\_ptr<T>'', w przypadku destrukcji wszystkich wskaźników odnoszących się do wcześniej zaalokowanego obszaru pamięci,
         kompilator przy pomocy destruktora wywołuje komendę ,,delete'' automatycznie, dzięki czemu programista jest ustrzeżony przed niepożądanym wyciekiem pamięci.
 
 \section{Kreacyjne}
