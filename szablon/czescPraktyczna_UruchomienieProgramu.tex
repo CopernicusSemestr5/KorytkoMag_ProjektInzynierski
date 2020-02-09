@@ -1,4 +1,6 @@
-\section{Uruchomienie programu}
+\chapter{Uruchomienie programu}
+    \section{Konfiguracja środowiska}
+    Napisy ujęte w cudzysłowy są komendami które należy wywołać z lini poleceń.
     \begin{enumerate}
         \item Uruchomienie systemu Manjaro Linux;
         \item Podłączenie do internetu w celu pobrania repozytorium;
@@ -8,16 +10,19 @@
             \item ,,sudo pacman --sync cmake''
             \item ,,sudo pacman --sync git''
         \end{enumerate}
-        \item otwarcie pierwszego okna konsoli oraz wywołanie poniższych komend, w celu uruchomienia symulatora urządzenia:
+    \end{enumerate}
+    \section{Kompilacja kodu źródłowego oraz wystartowanie programu}
+    \begin{enumerate}
+        \item otwarcie pierwszej konsoli w celu uruchomienia symulatora urządzenia:
 		\begin{enumerate}
-			\item ,,git clone https://github.com/trunksBT/KorytkoMag\_RetSimulator.git -{}-recursive''
+			\item ,,git clone -{}-recursive https://github.com/trunksBT/KorytkoMag\_RetSimulator.git''
 			\item ,,cd KorytkoMag\_RetSimulator''
 			\item ,,cmake .''
 			\item ,,bash runBinary.sh''
 		\end{enumerate}
-		\item otwarcie drugiego okna konsoli oraz wywołanie poniższych komend, w celu uruchomienia sterownika:
+		\item otwarcie drugiej konsoli w celu uruchomienia sterownika:
 		\begin{enumerate}
-			\item ,,git clone https://github.com/trunksBT/KorytkoMag\_RetDriverSimulator.git -{}-recursive''
+			\item ,,git clone -{}-recursive https://github.com/trunksBT/KorytkoMag\_RetDriverSimulator.git''
 			\item ,,cd KorytkoMag\_RetDriverSimulator''
 			\item ,,cmake .''
 			\item ,,bash runBinary.sh''
@@ -25,3 +30,11 @@
 			\item Aby zakończyć trzeba wpisać ,,exit''
 		\end{enumerate}
     \end{enumerate}
+    \newpage
+    \section{Efekt końcowy}
+        \lstinputlisting[
+            language=bash,
+            basicstyle=\tiny,
+            caption=Wykonanie programu,
+            label=lst:WykonanieProgramu]
+        {LogZWykonania/BinaryLog.log}
