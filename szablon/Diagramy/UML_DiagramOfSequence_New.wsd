@@ -1,12 +1,10 @@
 @startuml
 
-title KalibracjaRETa
+actor Użytkownik
+participant Urządzenie_Nadrzędne
+participant Urządzenie_Podrzędne
 
-actor RetDriverUser
-participant RetDriver
-participant RetSimulator
-
-note over RetDriverUser, RetSimulator
+note over Użytkownik, Urządzenie_Podrzędne
 Wszystkie poniższe wartości zostały przedstawione w systemie szesnastkowym
 a więc FF oznacza 0xFF.
 Pominięte też zostały stałe elementy dla wiadomości takie jak:
@@ -17,9 +15,9 @@ end note
 
 == L1 Warstwa fizyczna ==
 
-RetDriverUser -> RetDriver : SetLinkSpeed 6666
+Użytkownik -> Urządzenie_Nadrzędne : SetLinkSpeed 6666
 loop 5 wiadomości, każda co 300ms
-    RetDriver -> RetSimulator : XID\n\
+    Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : XID\n\
     FF BF 81 F0 08\n\
     01 02 33 33\n\
     03 02 FF FF
@@ -27,13 +25,13 @@ end
 
 == L2 Warstwa łącza danych ==
 
-RetDriverUser -> RetDriver : DeviceScan 5555
-RetDriver -> RetSimulator : XID\n\
+Użytkownik -> Urządzenie_Nadrzędne : DeviceScan 5555
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : XID\n\
     FF BF 81 F0 08\n\
     01 02 00 00\n\
     03 02 00 00
 
-RetSimulator -> RetDriver : XID\n\
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : XID\n\
     00 BF 81 F0 12\n\
     01 09 4E 4B 34 36 35 30 30 30 30\n\
     04 01 01\n\
@@ -41,14 +39,14 @@ RetSimulator -> RetDriver : XID\n\
 
 newpage
 
-RetDriverUser -> RetDriver : AddressAssignment 5555
-RetDriver -> RetSimulator : XID\n\
+Użytkownik -> Urządzenie_Nadrzędne : AddressAssignment 5555
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : XID\n\
     FF BF 81 F0 11\n\
     01 09 4E 4B 34 36 35 30 30 30 30\n\
     02 01 03\n\
     04 01 01
 
-RetSimulator -> RetDriver : XID\n\
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : XID\n\
     03 BF 81 F0 12\n\
     01 09 4E 4B 34 36 35 30 30 30 30\n\
     04 01 01\n\
@@ -56,23 +54,23 @@ RetSimulator -> RetDriver : XID\n\
 
 .......
 
-RetDriverUser -> RetDriver : DeviceScan 5555
-RetDriver -> RetSimulator : XID\n\
+Użytkownik -> Urządzenie_Nadrzędne : DeviceScan 5555
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : XID\n\
     FF BF 81 F0 08\n\
     01 02 00 00\n\
     03 02 00 00
 
 newpage
 
-RetDriverUser -> RetDriver : HDLCParameters 5555
-RetDriver -> RetSimulator : XID\n\
+Użytkownik -> Urządzenie_Nadrzędne : HDLCParameters 5555
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : XID\n\
     03 BF 81 80 12\n\
     05 04 F0 2D 00 00\n\
     06 04 F0 2D 00 00\n\
     07 01 01\n\
     08 01 01 
 
-RetSimulator -> RetDriver : XID\n\
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : XID\n\
     03 BF 81 80 12\n\
     05 04 50 02 00 00\n\
     06 04 50 02 00 00\n\
@@ -81,46 +79,44 @@ RetSimulator -> RetDriver : XID\n\
 
 ......
 
-RetDriverUser -> RetDriver : LinkEstablishment 5555
-RetDriver -> RetSimulator : U::SNRM\n\
+Użytkownik -> Urządzenie_Nadrzędne : LinkEstablishment 5555
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : U::SNRM\n\
     03 93 
 
-RetSimulator -> RetDriver : U::UA\n\
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : U::UA\n\
     03 73
 
 newpage
 
-RetDriverUser -> RetDriver : 3GPPReleaseID 5555
-RetDriver -> RetSimulator : XID\n\
+Użytkownik -> Urządzenie_Nadrzędne : 3GPPReleaseID 5555
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : XID\n\
     03 BF 81 F0 03\n\
     05 01 08
 
-RetSimulator -> RetDriver : XID\n\
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : XID\n\
     03 BF 81 F0 03\n\
     05 01 08
 
 ......
 
-RetDriverUser -> RetDriver : AisgProtocolVersion 5555
-RetDriver -> RetSimulator : XID\n\
+Użytkownik -> Urządzenie_Nadrzędne : AisgProtocolVersion 5555
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : XID\n\
     03 BF 81 F0 03\n\
     14 01 02
 
-RetSimulator -> RetDriver : XID\n\
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : XID\n\
     03 BF 81 F0 03\n\
     14 01 02
 
 == L7 Warstwa aplikacyjna ==
 
-RetDriverUser -> RetDriver : Calibrate 5555
-RetDriver -> RetSimulator : I\n\
+Użytkownik -> Urządzenie_Nadrzędne : Calibrate 5555
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : I\n\
     03 10\n\
     31 00 00 
 
-RetSimulator -> RetDriver : I\n\
+Urządzenie_Podrzędne -> Urządzenie_Nadrzędne : I\n\
     03 30\n\
     31 01 00 00 
-
-footer Pawel Korycinski
 
 @enduml

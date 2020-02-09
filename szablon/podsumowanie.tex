@@ -1,4 +1,60 @@
 \chapter{Podsumowanie}
-    Podsumowanko
+    Sposób podejscia do implementacji pracy inżynierskiej polegający na zastosowaniu licznych wzorców projektowych sprawił, że powstały kod
+    jest modularny oraz elastyczny pod kątem przyszłej rozbudowy czy utrzymania. 
+    Analiza funkcjonalności wymaganych do zrealizowania poprzez podział na warstwy modelu OSI, umożliwiła zidentyfikować konieczność emulacji warstwy fizycznej. 
+    Sprawiło to, że zarówno wykonanie testów modułowych jak i manualnych jest realizowane bez konieczności podłączenia rzeczywistego urządzenia. 
+    Podział zadań przy pomocy tablicy Kanban, pozwolił w odpowiednim momencie zaobserwować konieczność wprowadzenia usprawnień 
+    w procesie jak i architekturze oprogramowania. Jednoczesne tworzenie diagramu sekwencji oraz klas, pozwaliło postrzegać każdą z funkcjonalności z perspektywy całego systemu.
+    Pomimo kilku potknięć, które sprawiły że komunikacja z fizycznym urządzeniem nie została zrealizowana, powstały produkt posiada wysoką wartość rynkową 
+    łatwą do zrealizowania.
+    \section{Co zostało zrealizowane}
+    \section{Efekty wdrożenia}
+    \section{Co nie zostało zrealizowane}
+    \subsection{Walidacja sumy CRC}
+    W celu przesłania wiadomości zapisanej w systemie heksadecymalnym przy pomocy interfejsu USB <-> RS-485
+    należy dokonać konwersji na postać binarną. Zarówno wiadomość odebrana, jak i wysłana może w trakcie transmisji ulec wybrakowaniu bądź
+    zmianie zawartości. W tym celu ramka HDLC protokołu AISG 2.0 posiada dwa bajty przeznaczone na walidację takowej wiadomości a jest to wykonywane
+    dzięki wyliczeniu sumy CRC-16. W związku z tym, że istnieje wiele implementacji algorytmu wyliczania sumy CRC, a każda z nich może różnić się od siebie zarówno:
+    definicją wyrażenia wielomianowego, jego postacią oraz wartością początkową, próbowałem na podstawie ,,podsłuchanej'' wiadomości przy pomocy
+    inżynierii wstecznej zdefiniować brakującą wiedzę, lecz aby tego dokonać potrzebowałem więcej informacji na temat zarówno endianowości
+    jak i uporządkowania bitów, których na moment opracowywania algorytmu nie posiadałem. Pomimo tego, że dla komputera jest to prosta operacja, to weryfikacja przez człowieka
+    wartości sumy CRC dla wiadomości o długości 16-tu bajtów na kartce zajmuje naprawdę dużo czasu. W dodatku powszechnym problemem jest to, że 
+    producenci urządzeń linii antenowej pomimo tego, że deklarują pełną implementację protokołu AISG 2.0, to w rzeczywistości okazuje się, że
+    wcale tak nie jest. Chcąc zapoznać się z protokołem komunikacyjnym oraz zrealizować projekt inżynierski podczas którego sprawdzę umiejętności testowania,
+    wdrażania wzorców projektowych czy też posługiwania się językiem C++, zamiast walczyć z urządzeniem i jego możliwymi błędami, postanowiłem
+    utworzyć symulator urządzenia, z którym sterownik będzie komunikował się przy pomocy biblioteki ZeroMQ, a samą wartość sumy wyznaczyłem na \{0x13, 0x37\}. 
+    Dzięki zaznajomieniu się z wieloma wzorcami projektowymi jak fabryka, komenda, budowniczy czy nakładanie obostrzeń na program dzięki listowaniu obsługiwanych komend, 
+    wspomniany wcześniej symulator urządzenia powstał niemalże za darmo, co uznaję za bardzo duży sukces z dziedziny projektowania architektury oprogramowania.
+    Kolejną zaletą utworzenia symulatora urządzenia jest umożliwienie testów komponentowych realizując regułę czarnej skrzynki, co pozwoli w przyszłości
+    znacznie skrócić czas testowania sterownika pod względem błędów logicznych.
+    \subsection{Weryfikacja wiadomości pod względem obecności zarezerwowanych znaków}
+    Z języka angielskiego ,,Byte stuffing''. Procedura polega na tym, że zarówno dla flagi startu jak i stopu zarezerwowana jest wartość 0x7E.
+    Niestety urządzenie podrzędne może odpowiedzieć na przykład podczas procedur XID negocjacji, wiadomością zawierającą bajt 0x7E. Nieobsłużone
+    takie zjawisko spowoduje, że urządzenie nadrzędne zinterpretuje ten bajt jako bajt stopu, co jest niepożądane\cite{ISO-IEC-13239}. W tym celu standard AISG 
+    definiuje procedurę do jakiej należy się zastosować w takiej sytuacji, z którą nie zaznajomiłem się.
+    \subsection{Interwały czasowe}
+    Protokół AISG 2.0 definiuje szereg interwałów których obecność można zaobserwować podczas komunikacji z urządzeniem. Jednym z nich jest
+    utrzymanie urządzenia w stanie zaadresowanym. W przypadku kiedy urządzenie podrzędne nie otrzyma jakiejkolwiek wiadomości w ciągu 3 minut
+    od jego zaadresowania, przechodzi ono w stan niezaadresowany, po czym ponownie należy zestawić warstwę fizyczną oraz łącza danych wraz
+    z całą procedurą XID negocjacji. Kolejnymi zależnościami czasowymi są odstępy pomiędzy wysłaniem wiadomości a rozpoczęciem nasłuchiwania na odpowiedź.
+    Problemem mógłby być scenariusz w którym wysyłamy wiadomość do urządzenia podrzędnego, a jest ono na przykład w trakcie procedury kalibracji która może 
+    trwać ok 2 minuty. Jako odpowiedź możemy wtedy otrzymać ramkę typu S której stan nazwano RNR czyli z angielskiego ,,Receiver Not Ready''. 
+    W tej sytuacji należy odczekać pewien kwant czasu, a następnie ponowić komunikację.
+    \subsection{Ustalanie maski}
+    RetSimulator jest urządzeniem które często posiada wbudowane wyjście RS-485, co oznacza że można podłączyć dwa bądź więcej urządzeń szeregowo. 
+    W takiej sytuacji na wiadomość pochodzącą z urządzenia nadrzędne zaadresowaną wartością 0xFF, każde z nich wyśle swoją odpowiedź, co niesie ze sobą wiele problemów.
+    Po stronie urządzenia nadrzędne zaobserwujemy to w ten sposób, że nasłuchiwane w czasie standardowego interwału czasu bajty
+    pochodzić będą naprzemian od dwóch bądź wiekszej liczby urządzeń. Algorytm definiowania maski skutecznie rozwiązuje ten problem. 
+    Podczas tej procedury dążymy do ustalenia unikalnego identyfikatora każdego z urządzeń, w celu wysłania wiadomości z żadaniem zaadresowania,
+    na którą odpowie tylko jedno urządzenie. Realizacja powyższego problemu często korzysta z algorytmów przeszukiwania binarnego, w trakcie którego
+    zadaniem jest ustalenie unikalnego identyfikatora urządzenia podrzędnego. Z racji tego, że podczas pracy inżynierskiej
+    przewidywano uruchomienie instancji sterownika dla każdego urządzenia osobno, pominięto implementację wyżej wymienionej logiki.
+    \section{Możliwości rozwoju}
+    Dzięki elastycznej i skalowalnej architekturze oprogramowania, bez większego problemu powinna być możliwość zaimplementowania rzeczywistej
+    warstwy fizycznej. Pozwoli to na podłączenie prawdziwego urządzenia w celu wykonywania zabiegów testowych na nim. Po zrealizowaniu
+    tego etapu planowane jest dodanie kolejnych komend serwowanych przez protokół AISG 2.0 takich jak: aktualizacja oprogramowania, 
+    reset twardy czy miękki oraz ustawienie kąta. Wdrożenie do aplikacji mechanizmu wielowątkowości, podłączenie więcej niż jednego urządzenia również będzie osiągalne.
+    Warstwy dynamicznego budowania wiadomości pozwalają również zmniejszyć czas wdrożenia najnowszej wersji protkołu AISG w wersji 3.0.
+
 %czyści puste strony
 \let\cleardoublepage\clearpage
