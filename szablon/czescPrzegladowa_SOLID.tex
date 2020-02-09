@@ -11,25 +11,31 @@ Pozwolę sobie przedstawić prawa budujące zasady SOLID oraz wspomnieć o ich g
 
 \section{SRP}
 Z angielskiego Single Responsibility Principle, a więc zasada pojedynczej odpowiedzialności.
-Definiuje ona, że powód modyfikacji klasy powinien być tylko jeden. \autocite[103]{martin2015zwinne}
+Definiuje ona, że powód modyfikacji klasy powinien być tylko jeden. 
+% \autocite[103]{martin2015zwinne}
 Realizacja tej reguły uchroni nas przed niechcianą modyfikacją definicji dużej liczby klas w przypadku zmiany logiki tylko jednej z nich.
 
 \section{OCP}
 Z angielskiego Open/Closed Principle, a więc zasada otwarte-zamknięte.
-Definiuje ona, że encje programowanie (klasy, moduły, funkcje itp.) powinny być otwarte na rozbudowę, ale zamknięte dla modyfikacji.\autocite[117]{martin2015zwinne}
+Definiuje ona, że encje programowanie (klasy, moduły, funkcje itp.) powinny być otwarte na rozbudowę, ale zamknięte dla modyfikacji.
+% \autocite[117]{martin2015zwinne}
 Jeśli ta zasada zostanie właściwie zastosowana, to nowe zmiany uzyskuje się poprzez dodanie nowego kodu, aniżeli zmiane istniejącego. 
 
 \section{LSP}
 Z angielskiego Liskov Substitution Principle, a więc zasada podstawiania Liskov.
-Definiuje ona, że musi być możliwość podstawienia typów pochodnych za ich typy bazowe.\autocite[127]{martin2015zwinne}
+Definiuje ona, że musi być możliwość podstawienia typów pochodnych za ich typy bazowe.
+% \autocite[127]{martin2015zwinne}
 Trzeba pamiętać o tej regule w trakcie definiowania relacji dziedziczenia pomiędzy klasami.
 
 \section{ISP}
 Z angielskiego Interface Segregation Principle, a więc zasada segregacji interfejsów.
-Definiuje ona, że klienty nie powinny być zmuszone do zależności od metod, których nie używają.\autocite[151]{martin2015zwinne}
+Definiuje ona, że klienty nie powinny być zmuszone do zależności od metod, których nie używają.
+% \autocite[151]{martin2015zwinne}
 Dzięki postępowaniu zgodnie z tą zasadą, utworzone interfejsy abstrakcyjnych klas bazowych będą zawierały minimalną liczbę funkcji czysto wirtualnych.
 
 \section{DIP}
 Z angielskiego Dependency Inversion Principle, a więc zasada odwracania zależności.
-Definiuje ona, że moduły wysokopoziomowe nie powinny zależeć od modułów niskopoziomowych. I jedne, i drugie powinny zależeć od abstrakcji.\autocite[141]{martin2015zwinne}
-Kolejnym postulatem jest to, że abstrakcje nie powinny zależeć od szczegółów. To szczegóły powinny zależeć od abstrakcji.\autocite[141]{martin2015zwinne}
+Definiuje ona, że moduły wysokopoziomowe nie powinny zależeć od modułów niskopoziomowych. I jedne, i drugie powinny zależeć od abstrakcji.
+% \autocite[141]{martin2015zwinne}
+Kolejnym postulatem jest to, że abstrakcje nie powinny zależeć od szczegółów. To szczegóły powinny zależeć od abstrakcji.
+% \autocite[141]{martin2015zwinne}

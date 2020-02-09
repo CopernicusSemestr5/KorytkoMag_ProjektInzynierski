@@ -2,7 +2,12 @@
 Z języka angielskiego High-Level Data Link Control. Protokół warstwy łącza danych modelu OSI. 
 Standard HDLC opisuje norma ISO, lecz szeroko stosuje się także implementację CISCO.
 HDLC jest stosowany w technologii WAN, ponieważ obsługuje zarówno połączenia dwupunktowe, jak i wielopunktowe. 
-Jest protokołem o orientacji bitowej oraz jest przezroczysty informacyjnie. \autocite{WIKI_HDLC}
+Jest protokołem o orientacji bitowej oraz jest przezroczysty informacyjnie. 
+\cite{WIKI_HDLC}
+\cite{ETSI-AISG}
+\cite{ETSI-3GPP-1}
+\cite{martin2014czysty}
+% \autocite{ETSI}
 W przypadku, jeśli przesyłana wartość jest wielobajtowa, zastosowane jest podejście \textit{little endian}.
 Głównym powodem, dla którego protokół utworzony w roku 1979 roku wciąż znajduje zastosowanie jest fakt, że jego implementacja pozwala w maksymalnym stopniu
 wyeliminować możliwość utraty przesyłanej informacji dzięki mechanizmowi walidacji sumy \textit{CRC} oraz algorytmowi ewaluacji \textit{bajtu} kontrolnego. Dzięki temu urządzenie nadrzędne może nawet żądać
