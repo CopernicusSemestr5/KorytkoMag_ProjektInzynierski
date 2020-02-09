@@ -55,14 +55,23 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
             caption= Metoda szablonowa - Wywołanie metod wirtualnych z poziomu innej metody]
             {Kod_Zrodlowy/DesignPatterns_TemplateMethod_Implementation.cpp}
     \subsection{Strategia}
-        Znanych jest wiele wzorców komunikacji pomiędzy komponentowej aczkolwiek w projekcie użyto dwa najbardziej znane: Publikuj-Subskrybuj oraz Żadanie-Odpowiedź.
+        Znanych jest wiele wzorców komunikacji pomiędzy komponentami aczkolwiek w projekcie użyto dwa najbardziej znane: Publikuj-Subskrybuj oraz Żadanie-Odpowiedź.
+        
+        \begin{figure}[h!]
+        \centering
+        \includegraphics[scale=0.75]{out/Diagramy/PublishSubscribe_RequestResponse.png}
+        \caption{Przepływ wiadomości dla wzorca Publikuj-Subskrybuj oraz Żądanie-Odpowiedź.
+            \newline(Opracowanie własne)}
+        \end{figure}
+
         Pierwszy z nich efektownie realizuje zasadę odwrócenia zależności, ponieważ sterownik urządzenia nadrzędne na początkowym etapie nie musi znać
         ilości podłączonych do linii urządzeń. Drugi namiast pozwala zrealizować podejście do transmisji z urządzeniem znane jako półdupleks, wymagane podczas
         wywoływania komend zestawiających warstwę łącza danych oraz aplikacyjnej. Głównym problem jest to, że obydwa wzorce wymagają innego zestawu komend w celu
         konfiguracji połączenia ze slotami systemowymi. W projekcie zaimplementowano jeden kontroler, który zarządza zestawianiem wymaganych warstw OSI w trakcie
         ciągłego uruchomienia sterownika, co osiągnięto dzięki dynamicznemu podmianie strategii komunikacji z Publikuj-Subskrybuj na Żadanie-Odpowiedź.
         Zaobserwowano pewne złe następstwo niepoprawnego użycia wzorca strategii polegające na prewencyjnemu rzuceniu wyjątku w przypadku gdyby programista wywołał niepoprawną metode.
-        W związku z tym, podczas przyszłej rozbudowy programu, zastosowany zostanie inny wzorzec o nazwie most. 
+        W związku z tym, podczas przyszłej rozbudowy programu, zastosowany zostanie inny wzorzec o nazwie most.
+        \newpage
         \lstinputlisting[
         language=C++,
         caption=Strategia komunikacji Żadanie-Odpowiedź dla urządzenia nadrzędnego]

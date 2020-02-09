@@ -1,0 +1,25 @@
+@startuml
+
+participant Urządzenie_Nadrzędne
+participant Urządzenie_Podrzędne
+
+group Publikuj-Subskrybuj
+
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : Wiadomość 1
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : Wiadomość 2
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : Wiadomość 3
+
+end group /* Publikuj-Subskrybuj */
+
+group Żądanie-Odpowiedź
+
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : Żądanie 1
+Urządzenie_Nadrzędne <- Urządzenie_Podrzędne : Odpowiedź na żądanie 1
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : Żądanie 2
+Urządzenie_Nadrzędne <- Urządzenie_Podrzędne : Odpowiedź na żądanie 2
+Urządzenie_Nadrzędne -> Urządzenie_Podrzędne : Żądanie 3
+Urządzenie_Nadrzędne <- Urządzenie_Podrzędne : Odpowiedź na żądanie 3
+
+end group /* Żądanie-Odpowiedź */
+
+@enduml
