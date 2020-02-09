@@ -1,0 +1,25 @@
+\section{Przejście na normalny tryb komunikacji}
+Jako odpowiedź na tę wiadomość urządzenie otrzyma ramkę, która zawiera wartość 0x73, co oznacza że 
+potwierdza ono żądane oczekiwanie.
+\newline\newline
+Bajt kontrolny posiada wartość 0x93 i oznacza żadanie ustalenia sposobu komunikacji z urządzeniem podrzędnym na tryb normalny, 
+a więc taki w którym wysyła ono ramkę jedynie jako odpowiedź na wcześniej nadaną przez urządzenie nadrzędne.
+
+\section{Wersja standardu 3GPP}
+Jako odpowiedź na tę wiadomość urządzenie otrzyma ramkę, która zawiera wartość 0x73, co oznacza że 
+potwierdza ono żądane oczekiwanie.
+\newline\newline
+Bajt kontrolny posiada wartość 0x93 i oznacza żadanie ustalenia sposobu komunikacji z urządzeniem podrzędnym na tryb normalny, 
+a więc taki w którym wysyła ono ramkę jedynie jako odpowiedź na wcześniej nadaną przez urządzenie nadrzędne.
+
+Teraz można przejść do coraz bardziej szczegółowych parametrów jak ustanowienie numeru wersji standardu 3GPP.
+Podczas tworzenia tej wiadomości znów skorzystano z ramki XID a więc należy zdefiniować identyfikator formatu, grupy oraz jej długość.
+Pierwsze dwie wartości są równe tym z komendy ,,AddressAssignment'' a długość ma wartość 0x03.
+Identyfikatorem parametru jest tym razem wartość 0x05, długością 0x01 natomiast wartościa parametru 0x08.
+Jest to wersja standardu w wersji 8-mej czyli pionierska dla technologii \textit{LTE}.
+Wprowadzono w niej wparcie dla interfejsu radiowego opartego o \textit{OFDMA}, którego wykorzystanie można zaobserwować również przy technologii 5G.
+
+\section{Wersja protokołu AISG}
+Z racji tego, że implementowana wersja protokołu AISG 2.0 jest jedną z wielu ( istnieją jeszcze dwie wcześniejsze: 1.0, 1.1 oraz najnowsza 3.0),
+potrzeba zdefiniować według którego standardu budowane są przez urządzenie nadrzędne oraz rozpoznawane przez podrzędne.
+Bajt identyfikujący parametr dla tej wiadomości ma wartość 0x14, długość parametru to 0x01 a jej wartość to 0x02.

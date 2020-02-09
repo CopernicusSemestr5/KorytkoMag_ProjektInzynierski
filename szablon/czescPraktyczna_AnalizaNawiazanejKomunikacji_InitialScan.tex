@@ -1,0 +1,21 @@
+% \chapter{Analiza nawiązanej komunikacji}
+\section{Skanowanie urządzeń}
+Parametrem tej komendy jest adres portu 5555, z którego korzysta sterownik
+do nawiązania połączenia typu tcp na adresie 127.0.0.1 wraz z symulatorem urządzenia,
+przy zastosowaniu wzorca Żadanie-Odpowiedź. Jest to wzorzec, który zakłada otrzymanie odpowiedzi na każdą wysłaną wiadomość, zanim kolejna zostanie nadana. 
+Opisany mechanizm komunikacji aplikowalny jest również do wszystkich poniższych komend.
+\newline\newline
+Budowa ramki wysyłanej przez tę komendę jest bardzo podobna do powyższej z racji tego, że powyższą można nazwać atrapą skanu a tą skanowaniem celowanym.
+Z racji tego, że różna jest liczba oraz wielkość poszczególnych parametrów HDLC, bajt rozmiaru grupy posiada wartość 0x11.
+\newline
+Pierwszy parametr identyfikuje się przy pomocy wartości 0x01 czyli jest to unikalny identyfikator urządzenia, który ma zostać zaadresowany.
+Kolejny bajt przypomina o rozmiarze parametru i w tym przypadku jest on równy 0x09. W powyższym opisie przedstawiono unikalny identyfikator urządzenia, który w przypadku
+równości z rzeczywistym, pozwala urządzeniu podrzędnemu przyjąć żądanie adresacji.
+\newline
+Następny parametr posiada wartość 0x02 i oznacza on, że w jego wartości urządzenie nadrzędne zdefiniowało adres urządzeniu wewnetrznemu, dzięki któremu
+będzie identyfikowane oraz z racji tego, że długość parametru ma wartość 0x01, to wartość wynosi 0x03. W przypadku obecnej pracy, nie będzie miał on większego znaczenia
+aczkolwiek w momencie kiedy urządzenia typu Ret połączone są ze sobą szerogowo, potrzeba jest możliwość wysłania wiadomości do na przykład drugiego w łańcuchu.
+\newline
+Wartość ostatniego parametru równa 0x04, definiuje typ urządzenia podrzędnego, z którym inicjalizowana jest komunikacja. Długość wynosi 0x01 a wartość to 0x01.
+Oznacza ona, że podejmowana jest próba nawiązania komunikacji z pojedyncznym RET-em.
+Dla porównania istnieją również urządzenia takie jak MultiRET, dzięki któremu można zmieniać wartość nachylania kąta głównej wiązki anteny na wielu osiach czy płaszczyznach.

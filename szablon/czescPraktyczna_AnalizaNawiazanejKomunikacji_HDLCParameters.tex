@@ -1,0 +1,32 @@
+\section{Negocjacje parametrów HDLC}
+Cechą negocjacji parametrów przy pomocy ramek XID jest to, że jeśli żądana wartość jest wspierana przez
+urządzenie podrzędne, to odpowie ono wiadomością zawierającą te same parametry oraz te same wartości. 
+W przeciwnym wypadku otrzymanymi wartościami parametrów będą największe możliwe przez nie wspierane.
+Zaobserwowano to zjawisko w przypadku negocjacji wielkości payloadu dla wysłanej oraz otrzymanej ramki informacyjnej.
+Urządzenie nadrzędne próbowało ustanowić dopuszczalną liczbę bitów na \{0xF0, 0x2D, 0x00, 0x00\} co daje wartość 61485,
+lecz urządzenie podrzędne odpowiedziało \{0x50, 0x02, 0x00, 0x00\} co po konwersji na system dziesiętny daje 20482 bity.
+% \newline\newline
+Powyższą wiadomość można rozbić na 4-ry osobne aczkolwiek połączono je z racji podobnych funkcjonalności realizowanych podczas jej wysłania.
+Protokół AISG bazuje na HDLC, które używane jest w wielu miejscach
+gdzie potrzebne jest połączenie połączenie o wysokiej gwarancji otrzymania wiadomości bez utraty informacji.
+Istnieje nawet jego realizacja służąca do komunikacja satelit kosmicznych i różni się ona od AISG głównie
+ustalonymi wiadomościami HDLC, gdzie potrzeba wysłać znacznie większą liczbę ramek na raz aniżeli tylko jedna.
+Pierwszy bajt adresu może zostać zmieniony z wartości 0xFF na 0x03, gdyż w poprzedniej wiadomości ustanowiono adres urządzenia podrzędnego.
+Ta wartość będzie aplikowana do każdej poniższej wiadomości a więc pominięto jej wspominanie,
+gdyż potraktowano ją jako stałą.
+% \newline
+Następnym bajtem jest identyfikator formatu, który dla wiadomości zawierającej parametry HDLC jest równy 0x81.
+% \newline
+Kolejny bajt czyli identyfikator grupy ma wartość 0x80, a następny (rozmiar grupy) jest równy 0x12.
+% \newline
+Pierwszym parametrem HDLC który jest negocjowany to maksymalny rozmiar \textit{payloadu} dla ramki informacyjnej nadawanej przez urządzenie nadrzędne.
+Identyfikatorem w tym przypadku jest 0x05. Rozmiar payloadu jest równy 0x04 a wartościami są \{ 0xF0, 0x2D, 0x00, 0x00 \}.
+% \newline
+Kolejny bajty natomiast budują negocjowany maksymalny rozmiar payloadu ramki informacyjnej do wiadomości otrzymywanej przez urządzenie nadrzędne.
+Identyfikator ma wartość 0x06 a pozostały bajty są tożsame jak dla poprzedniej
+negocjacji.
+% \newline
+Następnym parametrem jest maksymalna liczba ramek wysłanych pod rząd przez urządzenie nadrzędne. Identyfikator ma wartość 0x07 a zarówno długość jak i wartość to 0x01.
+% \newline
+Ostatnim parametrem negocjowanym podczas tej wiadomości jest maksymalna liczba ramek otrzymanych pod rząd poprzez urządzenie nadrzędne.
+Wartość identyfikatora jest równa 0x08 a długość oraz wartość znów posiadają wartości 0x01.
