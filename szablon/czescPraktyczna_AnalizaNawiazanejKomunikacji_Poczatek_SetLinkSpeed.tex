@@ -17,13 +17,13 @@
     przy zastosowaniu wzorca Publikuj-Subskrybuj. Podczas tego połączenia protokół AISG 2.0 nie zakłada oczekiwania na odpowiedź od urządzenia podrzędnego oraz użyta biblioteka
     ZeroMQ również nie udostępnia możliwości wysłania odpowiedzi na taką wiadomość.
     \newline
-	Analiza poszczególnych wartości wiadomości wychodzącej (rysunek \ref{lst:WykonanieProgramu}, linijki [3, 12]):
+	Analiza poszczególnych wartości wiadomości wychodzącej (rysunek \ref{lst:WykonanieProgramu}, linijki [3; 12]):
 	\begin{enumerate}
-        \item Bajt adresu = 0xFF --- w przypadku tej komendy celem jest synchronizacja prędkości połączenia ze wszystkimi urządzeniami na lini, 
+        \item ADDR = 0xFF --- w przypadku tej komendy celem jest synchronizacja prędkości połączenia ze wszystkimi urządzeniami na lini, 
         które nie są zaadresowane, a więc jest to wiadomość typu \textit{broadcast};
-        \item Bajt kontrolny = 0xBF --- charakterystyczny dla ramki XID;
-        \item Bajt identyfikatora formatu = 0x81 --- charakterystyczna dla ramki XID oraz żądania przypisania adresu;
-        \item Bajt identyfikatora grupy = 0xF0 --- charakterystyczna dla ramki XID oraz żadania przypisania adresu;
-        \item Bajt długości grupy = 0x08 --- liczba bajtów która pojawi się od kolejnej pozycji aż do pierwszego batja sumy CRC;
+        \item CTRL = 0xBF --- charakterystyczny dla ramki XID;
+        \item FI = 0x81 --- charakterystyczna dla ramki XID oraz żądania przypisania adresu;
+        \item GI = 0xF0 --- charakterystyczna dla ramki XID oraz żadania przypisania adresu;
+        \item GL = 0x08 --- liczba bajtów która pojawi się od kolejnej pozycji aż do pierwszego batja sumy CRC;
     \end{enumerate}
     Pominięto analizę kolejnych bajtów dla tej wiadomości % TODO
