@@ -1,0 +1,55 @@
+\chapter{Testowanie oprogramowania}
+    Projekt zrealizowano zgodnie z zasadą TDD, którą budują trzy główne prawa.
+    \newline
+    Pierwsze prawo - nie można zacząć pisać kodu produkcyjnego do momentu napisania niespełnianego testu jednostkowego.
+    \newline
+    Drugie prawo - Nie można napisać więcej testów jednostkowych, które są wystarczające do niespełnienia testu, a brak kompilacji jest jednocześnie nieudanym testem.
+    \newline
+    Trzecie prawo - Nie można pisać większej ilości kodu produkcyjnego, niż wystarczy do spełnienia obecnie niespełnianego testu.\cite{martin2014czysty}
+    \newline
+    Dzięki powyższym postulatom, projekt nie zawiera kodu nieużywanego, który wymagałby dodatkowego narzutu czasu podczas jego czytania. Prawdą jest to, że lepszy jest kod,
+    którego nie ma, aniżeli ten który jest, aczkolwiek jego działanie jest niewiadome. Obszerna regresja na wielu poziomach abstrakcji pozwoliła na ciągłe usprawnianie zarówno architektury
+    jak i dostarczonych funkcjonalności bez obaw wprowadzenia błędów. Podczas konstrukcji przypadków testowych zwrócono uwagę na to, że odpowiednie zdefiniowanie: 
+    argumentów wejściowych funkcji/klasy, wartości zwracanych przez funkcję/metodę, pozwoli zachować jedno ciało funkcji testowych. Podejście to nazywa się testowaniem parametrycznym.
+    \section{Automatyczne testy jednostkowe}
+        \lstinputlisting[
+        language=bash,
+        basicstyle=\tiny,
+        label=lst:TestyJednostkowe,
+        caption=Efekt uruchomienia automatycznych testów jednostkowych]
+        {LogZWykonania/LogsFromUT.log}
+        \subsection{Testowanie bazy danych}
+            Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [7; 22]):
+            \begin{enumerate}
+                \item Pobierz obiekt przy pomocy niestniejącego klucza.
+                \item Dodaj nowy obiekt przy pomocy klucza.
+                \item Wielokrotnie dodaj nowy obiekt przy pomocy klucza.
+                \item Dodaj nowy obiekt bez pomocy klucza.
+                \item Wielokrotnie dodaj nowy obiekt bez pomocy klucza.
+                \item Skasuj obiekt przy pomocy klucza.
+                \item Wielokrotnie skasuj obiekt przy pomocy klucza.
+            \end{enumerate}
+        \subsection{Testowanie budowania pełnej ramki AISG}
+            Przeprowadzony test (listing \ref{lst:TestyJednostkowe}- linijki [24; 27]) sprawdzaj czy konstruktor klasy ,,HDLCFrame'' poprawnie
+            dokona enkapsulacji ciała ramki, wzbogadając ją o flagę startu, stopu oraz sumę kontrolną. Dzięki obiektowemu podejściu do tworzenia kodu źródłowego, 
+            brak jest konieczności wykonania testów dla każdej z budowanych ramek, ponieważ sprawdzono to w dedykowanej klasie testowej do budowania ciała ramki. 
+        \subsection{Testowanie parsera danych wejściowych użytkownika}
+            Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [29; 36]):
+            \begin{enumerate}
+                \item Wprowadź poprawnie prawidłową komendę
+                \item Wprowadź niepoprawnie prawidłową komendę, brak zachowania odpowiedniej wielkość liter
+                \item Wprowadź nieprawidłową komendę
+            \end{enumerate}
+        \subsection{Testowanie fabryki tworzącej ciało ramki AISG}
+            Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [38; 57]) pokrywają zbudowanie każdej z ramek
+            wspomnianej w rozdziale ,,Analiza nawiązanej komunikacji''[\ref{ch:AnalizaNawiazanejKomunikacji}].
+        \subsection{Testowanie interpretera ramki HDLC}
+            Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [59; 76]) pokrywają rozpoznanie każdej z ramek 
+            wspomnianej w rozdziale ,,Analiza nawiązanej komunikacji''[\ref{ch:AnalizaNawiazanejKomunikacji}], wprowadzonej w postaci łańcucha znaków.
+    \section{Automatyczne testy modułowe}
+        \lstinputlisting[
+        language=bash,
+        basicstyle=\tiny,
+        caption=Testy modułowe]
+        {LogZWykonania/LogsFromMT.log}
+    \section{Manualne testy integracyjne}
