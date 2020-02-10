@@ -5,14 +5,26 @@ do nawiązania połączenia typu tcp na adresie 127.0.0.1 wraz z symulatorem urz
 przy zastosowaniu wzorca Żadanie-Odpowiedź. Jest to wzorzec, który zakłada otrzymanie odpowiedzi na każdą wysłaną wiadomość, zanim kolejna zostanie nadana. 
 Opisany mechanizm komunikacji aplikowalny jest również do wszystkich poniższych komend.
 
-Analiza wartości wiadomości przychodzącej 
+Analiza wartości wiadomości wychodzącej 
 (rysunek \ref{lst:WykonanieProgramu} - linijki {15, 16}, rysunek \ref{fig:DiagramSequence_LinkSpeed_DeviceScan}):
 \begin{enumerate}
-    \item ADDR = 0xFF --- \textit{broadcast};
+    \item ADDR = 0xFF --- broadcast;
     \item CTRL = 0xBF --- charakterystyczny dla ramki XID;
     \item FI = 0x81 --- charakterystyczna dla ramki XID oraz grupy wiadomości przypisania adresu;
     \item GI = 0xF0 --- grupa wiadomości przypisania adresu;
     \item GL = 0x08;
+    \item Pierwszy parametr HDLC:
+    \begin{enumerate}
+        \item PI = 0x01 --- unikalny identyfikator urządzenia podrzędnego;
+        \item PL = 0x02;
+        \item PV = \{ 0x00, 0x00 \} --- zestawienie tych wartości spowoduje, że każde urządzenie podłączone do portu zgłosi swoją obecność;
+    \end{enumerate}
+    \item Drugi parametr HDLC:
+    \begin{enumerate}
+        \item PI = 0x03 --- maska unikalnego identyfikatora;
+        \item PL = 0x02;
+        \item PV = \{ 0x00, 0x00 \}  --- zestawienie tych wartości spowoduje, że każde urządzenie podłączone do portu zgłosi swoją obecność;
+    \end{enumerate}
 \end{enumerate}
 
 Analiza wartości wiadomości przychodzącej 
@@ -42,5 +54,4 @@ Analiza wartości wiadomości przychodzącej
         \item PV = \{ 0x4E, 0x4B \};
     \end{enumerate}
 \end{enumerate}
-
 
