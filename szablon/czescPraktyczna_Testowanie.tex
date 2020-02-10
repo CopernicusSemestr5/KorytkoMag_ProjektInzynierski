@@ -11,45 +11,76 @@
     którego nie ma, aniżeli ten który jest, aczkolwiek jego działanie jest niewiadome. Obszerna regresja na wielu poziomach abstrakcji pozwoliła na ciągłe usprawnianie zarówno architektury
     jak i dostarczonych funkcjonalności bez obaw wprowadzenia błędów. Podczas konstrukcji przypadków testowych zwrócono uwagę na to, że odpowiednie zdefiniowanie: 
     argumentów wejściowych funkcji/klasy, wartości zwracanych przez funkcję/metodę, pozwoli zachować jedno ciało funkcji testowych. Podejście to nazywa się testowaniem parametrycznym.
-    \section{Automatyczne testy jednostkowe}
-        \lstinputlisting[
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+\section{Testy jednostkowe}
+    \lstinputlisting[
+    language=bash,
+    basicstyle=\tiny,
+    label=lst:TestyJednostkowe,
+    caption=Efekt uruchomienia testów jednostkowych]
+    {LogZWykonania/LogsFromUT.log}
+    
+    Testy jednostkowe zwane są często testami komponentów, czy też testami modułowymi. Ich głównym celem jest znalezienie błędów w implementacji danej jednostki / komponentu.
+    \cite{Testowanie}
+    Uruchomienie testów odbywa się przy pomocy komendy ,,bash runUT.sh'', wywoływanej z poziomu głównego katalogu projektu.
+    
+    \subsection{Testowanie bazy danych}
+    \label{sec:TestowanieBazyDanych}
+        Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [7; 22]):
+        \begin{enumerate}
+            \item Pobierz obiekt przy pomocy niestniejącego klucza.
+            \item Dodaj nowy obiekt przy pomocy klucza.
+            \item Wielokrotnie dodaj nowy obiekt przy pomocy klucza.
+            \item Dodaj nowy obiekt bez pomocy klucza.
+            \item Wielokrotnie dodaj nowy obiekt bez pomocy klucza.
+            \item Skasuj obiekt przy pomocy klucza.
+            \item Wielokrotnie skasuj obiekt przy pomocy klucza.
+        \end{enumerate}
+    \subsection{Testowanie budowania pełnej ramki AISG}
+        Przeprowadzony test (listing \ref{lst:TestyJednostkowe}- linijki [24; 27]) sprawdza czy konstruktor klasy ,,HDLCFrame'' poprawnie
+        dokona enkapsulacji ciała ramki, wzbogacając ją o flagę startu, stopu oraz sumę kontrolną. Dzięki obiektowemu podejściu do tworzenia kodu źródłowego, 
+        brak jest konieczności wykonania testów dla każdej z budowanych ramek, ponieważ dokonano tego klasie testowej dedykowanej do weryfikacji poprawności budowania ciała ramki. 
+    \subsection{Testowanie parsera danych wejściowych użytkownika}
+        Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [29; 36]):
+        \begin{enumerate}
+            \item Wprowadź poprawnie prawidłową komendę
+            \item Wprowadź niepoprawnie prawidłową komendę, brak zachowania odpowiedniej wielkość liter
+            \item Wprowadź nieprawidłową komendę
+        \end{enumerate}
+    \subsection{Testowanie fabryki tworzącej ciało ramki AISG}
+        Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [38; 57]) pokrywają zbudowanie każdej z ramek
+        wspomnianej w rozdziale ,,Analiza nawiązanej komunikacji''[\ref{ch:AnalizaNawiazanejKomunikacji}].
+    \subsection{Testowanie interpretera ramki HDLC}
+        Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [59; 76]) pokrywają rozpoznanie każdej z ramek 
+        wspomnianej w rozdziale ,,Analiza nawiązanej komunikacji''[\ref{ch:AnalizaNawiazanejKomunikacji}], wprowadzonej w postaci łańcucha znaków.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Testy integracyjne}
+    \lstinputlisting[
+    language=bash,
+    basicstyle=\tiny,
+    label=lst:TestyIntegracyjne,
+    caption=Testy integracyjne]
+    {LogZWykonania/LogsFromMT.log}
+    
+    Kolejnym poziomem są testy integracyjne, sprawdzają czy komponenty poprawnie współdziałają ze sobą. \cite{Testowanie}
+    Uruchomienie testów odbywa się przy pomocy komendy ,,bash runMT.sh'', wywoływanej z poziomu głównego katalogu projektu.
+    
+    \subsection{Integracja bazy danych z interfejsem użytkownika}
+    Przeprowadzone testy (listing \ref{lst:TestyIntegracyjne}- linijki [7; 18]) pokrywają przypadki testowe z rozdziału ,,Testowanie bazy danych''\ref{sec:TestowanieBazyDanych}.
+    Różnicą jest sposób przekazania danych wejściowych. W poprzednim rozdziale w ciele funkcji testowej, wywoływano poszczególne funkcje interfejsu bazy danych.
+    Testy integracyjne dokonują modyfikacji bazy danych, korzystając z funkcji obiektu klasy ,,CMenu''. Przy jego pomocy, końcowy użytkownik wchodzi w interakcję ze sterownikiem  
+    przy pomocy interfejsu konsoli. Dzięki odpowiedniej definicji metod klasy ,,CMenu'', na poziomie klasy testowej, pominięto fazę komunikacji przy pomocy konsoli.
+    Zastąpiono go wywołaniem funkcji, która jako argument przyjmuje obiekt typu std::vector<std::string>, przechowujący podzieloną na tokeny prawdziwą komendę.
+    \ref{lst:TestyIntegracyjne_UI_Database}
+    \lstinputlisting[
         language=bash,
         basicstyle=\tiny,
-        label=lst:TestyJednostkowe,
-        caption=Efekt uruchomienia automatycznych testów jednostkowych]
-        {LogZWykonania/LogsFromUT.log}
-        \subsection{Testowanie bazy danych}
-            Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [7; 22]):
-            \begin{enumerate}
-                \item Pobierz obiekt przy pomocy niestniejącego klucza.
-                \item Dodaj nowy obiekt przy pomocy klucza.
-                \item Wielokrotnie dodaj nowy obiekt przy pomocy klucza.
-                \item Dodaj nowy obiekt bez pomocy klucza.
-                \item Wielokrotnie dodaj nowy obiekt bez pomocy klucza.
-                \item Skasuj obiekt przy pomocy klucza.
-                \item Wielokrotnie skasuj obiekt przy pomocy klucza.
-            \end{enumerate}
-        \subsection{Testowanie budowania pełnej ramki AISG}
-            Przeprowadzony test (listing \ref{lst:TestyJednostkowe}- linijki [24; 27]) sprawdzaj czy konstruktor klasy ,,HDLCFrame'' poprawnie
-            dokona enkapsulacji ciała ramki, wzbogadając ją o flagę startu, stopu oraz sumę kontrolną. Dzięki obiektowemu podejściu do tworzenia kodu źródłowego, 
-            brak jest konieczności wykonania testów dla każdej z budowanych ramek, ponieważ sprawdzono to w dedykowanej klasie testowej do budowania ciała ramki. 
-        \subsection{Testowanie parsera danych wejściowych użytkownika}
-            Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [29; 36]):
-            \begin{enumerate}
-                \item Wprowadź poprawnie prawidłową komendę
-                \item Wprowadź niepoprawnie prawidłową komendę, brak zachowania odpowiedniej wielkość liter
-                \item Wprowadź nieprawidłową komendę
-            \end{enumerate}
-        \subsection{Testowanie fabryki tworzącej ciało ramki AISG}
-            Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [38; 57]) pokrywają zbudowanie każdej z ramek
-            wspomnianej w rozdziale ,,Analiza nawiązanej komunikacji''[\ref{ch:AnalizaNawiazanejKomunikacji}].
-        \subsection{Testowanie interpretera ramki HDLC}
-            Przeprowadzone testy (listing \ref{lst:TestyJednostkowe}- linijki [59; 76]) pokrywają rozpoznanie każdej z ramek 
-            wspomnianej w rozdziale ,,Analiza nawiązanej komunikacji''[\ref{ch:AnalizaNawiazanejKomunikacji}], wprowadzonej w postaci łańcucha znaków.
-    \section{Automatyczne testy modułowe}
-        \lstinputlisting[
-        language=bash,
-        basicstyle=\tiny,
-        caption=Testy modułowe]
-        {LogZWykonania/LogsFromMT.log}
-    \section{Manualne testy integracyjne}
+        label=lst:TestyIntegracyjne_UI_Database,
+        caption=Działanie sterownika]
+        {Kod_Zrodlowy/TestyIntegracyjne_UI_Database.cpp}
+
+\section{Manualne testy systemowe}
