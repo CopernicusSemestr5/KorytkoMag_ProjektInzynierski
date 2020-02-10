@@ -167,6 +167,14 @@ Na rysunku \ref{fig:DiagramSequence_AddressAssignment_SecondDeviceScan} przedsta
 Zostało to wykonane w celu upewnienia się, że poprzednia procedura adresacji powiodła się. Po zaadresowaniu urządzenia podrzędnego, nie powinno
 ono odpowiedzieć na wiadomość typu broadcast.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page3.png}
+    \caption{Negocjacja rozmiaru okna oraz payloadu ramki informacyjnej oraz ustanowienie normalnego trybu komunikacji.
+        \newline(Opracowanie własne)}
+    \label{fig:DiagramSequence_HDLCParameters_SNRM}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Negocjacje parametrów HDLC}
@@ -303,3 +311,42 @@ Analiza wartości wiadomości wychodzącej
     \end{enumerate}
 \end{enumerate}
 Wiadomość przychodząca posiada tę samą wartość co wychodząca, dlatego pominięto jej analizę.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page4.png}
+    \caption{Negocjacja pozostałych parametrów HDLC oraz żadanie kalibracji urządzenia.
+    \newline(Opracowanie własne)}
+    \label{fig:DiagramSequence_3GPP_AISGVersion_Calibrate}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Kalibracja}
+Kalibracja jest procedurą obowiązkową, jeśli użytkownik RET-a, planuje zmodyfikować kąt głównej wiązki. 
+Polega ona na ustawieniu kąta anteny na wartość maksymalną
+wspieraną przez urządzenia podrzędne, a następnie ustawieniu kąta na minimalną wspieraną wartość. 
+Czynność ta jest czasochłonna gdyż może trwać aż do 3 minut, w związku z czym należy ją wykonać w początkowym
+etapie konfigurowania stacji nadawczej. Pozwala ona wykryć podstawowe błędy, które mogą pojawić się podczas próby
+ustawienia kąta, takie jak awaria silnika. W przypadku pominięcia tej procedury, poprawnie zaprogramowane urządzenie
+podrzędne, powinno zwrócić jako odpowiedź na żadanie kalibracji odpowiedni kod rezultatu. Poinformuje on o tym, że
+od momentu adresacji urządzenia, procedura kalibracji nie została przeprowadzona.
+\newline\newline
+Analiza wartości wiadomości wychodzącej 
+(rysunek \ref{lst:WykonanieProgramu}, linijki [61; 63] oraz \ref{fig:DiagramSequence_3GPP_AISGVersion_Calibrate}):
+\begin{enumerate}
+    \item ADDR = 0x03 --- adres nadany urządzeniu podrzędnemu;
+    \item CTRL = 0x10 --- bajt kontrolny (rysunek \ref{fig:FrameI_Bajt_kontrolny})
+    \item PC = 0x31 --- kod procedury dla kalibracji pojedycznego RET-a;
+    \item PL = \{ 0x00, 0x00 \} --- dwubajtowa długość dodatkowych wartości przesyłanych;
+\end{enumerate}
+\bigskip
+Analiza wartości wiadomości przychodzącej 
+(rysunek \ref{lst:WykonanieProgramu}, linijka 64 oraz \ref{fig:DiagramSequence_3GPP_AISGVersion_Calibrate}):
+\begin{enumerate}
+    \item ADDR = 0x03 --- adres nadany urządzeniu podrzędnemu;
+    \item CTRL = 0x30 --- bajt kontrolny (rysunek \ref{fig:FrameI_Bajt_kontrolny})
+    \item PC = 0x31 --- kod procedury dla kalibracji pojedycznego RET-a;
+    \item PL = \{ 0x01, 0x00 \} --- dwubajtowa długość dodatkowych wartości przesyłanych;
+    \item PV = 0x00 --- OK, precedura przebiegła pomyślnie;
+\end{enumerate}
