@@ -3,24 +3,35 @@ Tutaj po raz pierwszy można zaobserwować zmienioną wartość pola adresu dla 
 przychodzącej. Oznacza to, że urządzenie podrzędne zaakceptowało żadanie adresacji 
 oraz identyfikuje się w trakcie rozmowy z urządzeniem nadrzędnym pod adresem 0x03 co
 jest prawdą dla każdej następnej wiadomości.
-\newline\newline
-Budowa ramki wysyłanej przez tę komendę jest bardzo podobna do powyższej z racji tego, że powyższą można nazwać atrapą skanu a tą skanowaniem celowanym.
-Z racji tego, że różna jest liczba oraz wielkość poszczególnych parametrów HDLC, bajt rozmiaru grupy posiada wartość 0x11.
-\newline
-Pierwszy parametr identyfikuje się przy pomocy wartości 0x01 czyli jest to unikalny identyfikator urządzenia, który ma zostać zaadresowany.
-Kolejny bajt przypomina o rozmiarze parametru i w tym przypadku jest on równy 0x09. W powyższym opisie przedstawiono unikalny identyfikator urządzenia, który w przypadku
-równości z rzeczywistym, pozwala urządzeniu podrzędnemu przyjąć żądanie adresacji.
-\newline
-Następny parametr posiada wartość 0x02 i oznacza on, że w jego wartości urządzenie nadrzędne zdefiniowało adres urządzeniu wewnetrznemu, dzięki któremu
-będzie identyfikowane oraz z racji tego, że długość parametru ma wartość 0x01, to wartość wynosi 0x03. W przypadku obecnej pracy, nie będzie miał on większego znaczenia
-aczkolwiek w momencie kiedy urządzenia typu Ret połączone są ze sobą szerogowo, potrzeba jest możliwość wysłania wiadomości do na przykład drugiego w łańcuchu.
-\newline
-Wartość ostatniego parametru równa 0x04, definiuje typ urządzenia podrzędnego, z którym inicjalizowana jest komunikacja. Długość wynosi 0x01 a wartość to 0x01.
-Oznacza ona, że podejmowana jest próba nawiązania komunikacji z pojedyncznym RET-em.
-Dla porównania istnieją również urządzenia takie jak MultiRET, dzięki któremu można zmieniać wartość nachylania kąta głównej wiązki anteny na wielu osiach czy płaszczyznach.
 
+Analiza wartości wiadomości wychodzącej 
+(rysunek \ref{lst:WykonanieProgramu}, linijki {20, 21} oraz \ref{fig:DiagramSequence_AddressAssignment_SecondDeviceScan}):
+\begin{enumerate}
+    \item ADDR = 0xFF --- broadcast;
+    \item CTRL = 0xBF --- charakterystyczny dla ramki XID;
+    \item FI = 0x81 --- charakterystyczna dla ramki XID oraz grupy wiadomości przypisania adresu;
+    \item GI = 0xF0 --- grupa wiadomości przypisania adresu;
+    \item GL = 0x11;
+    \item Pierwszy parametr HDLC:
+    \begin{enumerate}
+        \item PI = 0x01 --- unikalny identyfikator urządzenia podrzędnego;
+        \item PL = 0x09;
+        \item PV = \{ 0x4E, 0x4B, 0x34, 0x36, 0x35, 0x30, 0x30, 0x30, 0x30 \};
+    \end{enumerate}
+    \item Drugi parametr HDLC:
+    \begin{enumerate}
+        \item PI = 0x02 --- docelowy adres urządzenia podrzędnego;
+        \item PL = 0x01;
+        \item PV = 0x03;
+    \end{enumerate}
+    \item Trzeci parametr HDLC:
+    \begin{enumerate}
+        \item PI = 0x04 --- typ urządzenia podrzędnego;
+        \item PL = 0x01;
+        \item PV = 0x01 --- pojedynczy RET;
+    \end{enumerate}
+\end{enumerate}
 
-identyfikujące się unikalnym identyfikatorem \textit{UniqueID} == \{0x4E, 0x4B, 0x34, 0x36, 0x35, 0x30, 0x30, 0x30, 0x30\}
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page2.png}
