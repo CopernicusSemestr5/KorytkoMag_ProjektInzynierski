@@ -1,7 +1,7 @@
 \chapter{Protokół AISG 2.0}
 	Symulator sterownika ma za zadanie odebrać od użytkownika polecenie w postaci komendy wieloargumentowej, 
 	która zawierała będzie nazwę procedury rozpoznawanej przez odpowiednie warstwy protokołu komunikacyjnego \textit{AISG v2.0}
-	realizującego podzbiór \textit{modelu OSI}.
+	realizującego podzbiór \textit{modelu OSI}\cite{ModelOSI}.
 	
 	\section{Warstwy}
 		\subsection{1-sza - Fizyczna}
@@ -10,10 +10,10 @@
 		\subsection{2-ga - Łącza danych}
 		Rolą tej warstwy jest:
 		\begin{itemize}
-			\item Enkapsulacja[BIB] ramki \textit{HDLC Body} do ramki HDLC[BIB]
+			\item Enkapsulacja\cite{ENKAPSULACJA} ramki \textit{HDLC Body} do ramki HDLC\cite{WIKI_ENG_HDLC}
 			\begin{itemize}
 				\item Dodanie \textit{bitów} startu i stopu;
-				\item Obliczenie oraz walidacja sumy CRC[BIB]
+				\item Obliczenie oraz walidacja sumy CRC\cite{CRC}
 			\end{itemize}
 			\item Budowa ramki typu XID podczas procedur negocjacji:
 			\begin{itemize}
