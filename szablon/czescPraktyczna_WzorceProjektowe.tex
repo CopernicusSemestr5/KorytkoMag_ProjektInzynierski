@@ -15,6 +15,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         Podczas implementacji sterownika zastosowano połączenie trzech wzorców projektowych a to wszystko dzięki potężnemu podejściu do organizacji
         struktury kodu jakim jest użycie komend. Zestawiając implementację interfejsu komendy oraz budowania konkretnej wiadomości dzięki fabryce
         pozwala na zdefiniowanie \textit{klas finalnych} zawierających charakterystyczne dla każdej z komend wywołań. 
+    \newpage
         \lstinputlisting[
             language=C++,
             caption=Interfejs komendy]
@@ -35,6 +36,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         W przypadku korzystania ze wskaźników dobrą praktyką jest każdorazowa weryfikacja czy jego wartość nie jest równa \textit{null}.
         Wykorzystanie klasy która implementuje interfejs kontrolera, w sposób neutralny sprawia, że zawsze bezpieczne będzie wywołanie na jej obiekcie 
         instancjonującym którejkolwiek z metod.
+    \newpage
         \lstinputlisting[
             language=C++,
             caption=Definicja klasy dla obiektu pustego]
@@ -102,7 +104,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         zmieniły sposób korzystania z dynamicznie alokowanej pamięci w sposób diametralny. Do tej pory dealokacja pamięci wskazywanej przez wskaźnik należała do obowiązków programisty.
         Dzięki podejściu tzw. RAII dla ,,shared\_ptr<T>'', w przypadku destrukcji wszystkich wskaźników odnoszących się do wcześniej zaalokowanego obszaru pamięci,
         kompilator przy pomocy destruktora wywołuje komendę ,,delete'' automatycznie, dzięki czemu programista jest ustrzeżony przed niepożądanym wyciekiem pamięci.
-
+\newpage
 \section{Kreacyjne}
     \subsection{Budowniczy}
         Często zdarza się, że obiekt klasy wymaga modernizacji wielu z jego pól a realizacja konstruktora posiadającego trzy bądź więcej parametrów,
@@ -114,6 +116,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
             language=C++,
             caption=Budowniczy wraz z Fluent API podczas budowania ramki I - Kalibruj]
             {Kod_Zrodlowy/DesignPatterns_Builder.cpp}
+\newpage
     \subsection{Fabryka}
         Istnieje pewien wzorzec, który owiany jest złą sławą. Programiści w momencie usłyszenia o nim dostają ciarek, gdyż sądzą, że pod tym słowem,
         kryje się obiekt, który potrafi zachować się w nieprzewidziany sposób podczas każdorazowego wywoływania jego metod. Z drugiej strony poprawna jego realizacja, 

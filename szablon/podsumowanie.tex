@@ -23,7 +23,7 @@
     w języku angielskim oraz adresu portu, do którego podłączony jest symulator urządzenia. 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+    \newpage
     \section{Co nie zostało zrealizowane}
     Podążając zgodnie z założeniami projektowymi, poniższe wymagania stają się konieczne dopiero w momencie podłączenia rzeczywistego urządzenia
     poprzez port USB. Ważnym krokiem dokonanym, jest dokładne przeanalizowanie problemów, które programista napotka w przyszłości,
@@ -65,7 +65,7 @@
     W takiej sytuacji na wiadomość pochodzącą z urządzenia nadrzędnego zaadresowaną wartością 0xFF, każde z nich wyśle swoją odpowiedź, co niesie ze sobą wiele problemów.
     Po stronie urządzenia nadrzędnego to zjawisko zostanie zaobserwowane jako złożenie zawartości wielu wiadomości co będzie skutkowało niepomyślnym
     procesem weryfikacji sumy CRC oraz ilosci flag stopu. Algorytm definiowania maski skutecznie rozwiązuje ten problem. 
-    Podczas tej procedury ustala się wartość unikalnego identyfikatora każdego z urządzeń, w celu wysłania wiadomości z żadaniem zaadresowania,
+    Podczas tej procedury ustala się wartość unikalnego identyfikatora każdego z urządzeń, w celu wysłania wiadomości z żądaniem zaadresowania,
     na którą odpowie tylko jedno urządzenie. Realizacja powyższego problemu często korzysta z algorytmów przeszukiwania binarnego, w trakcie którego
     zadaniem jest ustalenie unikalnego identyfikatora urządzenia podrzędnego. Z racji tego, że podczas pracy inżynierskiej
     przewidywano uruchomienie instancji sterownika dla każdego urządzenia osobno, pominięto implementację wyżej wymienionej logiki.

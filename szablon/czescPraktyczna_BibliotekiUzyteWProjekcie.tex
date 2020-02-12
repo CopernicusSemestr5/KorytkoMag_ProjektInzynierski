@@ -1,0 +1,37 @@
+\chapter{Zewnętrzne biblioteki użyte w projekcie}
+\subsection{ZeroMQ}
+Jest to biblioteka, która umożliwia komunikację pomiędzy rozłącznymi komponentami, przy jednego wielu zdefiniowanych wzorców wymiany
+wiadomości. Jej implementacja została wykonana dla wielu różnych języków programowania, w tym dla C++.
+Realizacja wymiany wiadomości opiera się o ułatwienie korzystania z socketów, dzięki użyciu mechanizmu RAII.
+Połączenie pomiędzy programami może zostać zrealizowane przy pomocy różnych protokołów jak takich jak: TCP, UDP czy IPC.
+
+\subsection{GTest}
+Biblioteka służąca do tworzenia testów jednostkowych napisanych w języku C++. Umożliwia definiowanie testów zarówno
+pojedynczych jak i parametrycznych, które cechują się jednym ciałem testowym dla wielu argumentów wejściowych i wyjściowych.
+Oparta jest na mechnizmie makr. Dodatkową funkcjonalnością jest możliwość definicji dodatkowych funkcji, tzw. matcher-ów.
+Wspomagają one implementację asercji czy oczekiwań wobec obliczeń produkujących wyniki, w postaci zdefiniowanych przez użytkownika
+złożonych typów danych oraz kolekcji.
+
+\newpage
+\subsection{CMake}
+Wieloplatofrmowe narzędzie do automatycznego zarządzania procesem kompilacji programu.
+Jego główną cechą to niezależność od używanego kompilatora oraz platformy sprzętowej. CMake nie kompiluje programu
+samodzielnie, lecz tworzy pliki z regułami kompilacji dla konkretnego środowiska, np. w systemie GNU/Linux - Makefile.
+\cite{CMAKE}
+
+\subsection{Boost}
+Zbiór klas zdefiniowanych w przestrzeni nazw ,,boost::''
+utworzonych oraz przeznaczonych do uruchamiania wraz z programami napisanymi w języku C++. 
+Kod zdefiniowanych w nich często jest kandydatem aby dołączyć do biblioteki standardowej ,,std::''.
+Biblioteki zdefiniowane w bibliotece boost, licznie korzystają z mechanizmu metaprogramowania, co pozwala
+w łatwy sposób zintegrować je wraz z własnym kodem źródłowym. Klasy wykorzystane w projekcie to:
+\begin{enumerate}
+    \item boost::optional - służy do przechowywania wartości zmiennej, która może być, lecz nie musi zostać zainicjalizowana.
+    Korzysta się z niej też w przypadku, kiedy wartość zdefiniowana przez konstruktor domyślny danego typu (np. 0 dla zmiennej typu int),
+    nie może zostać użyta jako wartość początkowa, gdyż ma już Ona znaczenie zdefiniowane przez specyfikację projektu.
+    \item boost::log - umożlwia wprowadzenie do projektu mechanizmu logowania wraz ze zdefiniowanymi priorytetami wiadomości;
+    Dodatkową opcją jest też zdefiniowanie własnego nagłówka logowania oraz możliwość zapisania logów do pliku tekstowego;
+    \item boost::tokenizer - zawiera algorytmy służące do podziału łańcucha znaków na pomniejsze tokeny, dzięki zdefiniowaniu;
+    znaku separującego poszczególne frazy;
+    \item boost::algorithm - wspomaga oraz ułatwia korzystanie z kolekcji zdefiniowanych w bilbiotece ,,std::'';
+\end{enumerate}
