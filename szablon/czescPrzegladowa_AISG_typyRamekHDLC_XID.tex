@@ -2,7 +2,7 @@
 	\subsection{Ramka XID}
 	Jej nazwa pochodzi z języka angielskiego ,,exchange identification''. 
 	Służy do przekazania urządzeniu podrzędnemu wiedzy na temat możliwości oraz charakterystyki komunikacji na warstwie łącza danych.
-	\cite{WIKI_ENG_HDLC}
+	
 	Odpowiadając na tego typu wiadomości, urządzenie podrzędne najczęściej zwraca tę samą wartość w przypadku zgodności, 
 	bądź najwyższą wspieraną, jeśli żądana jest zbyt duża. Szereg wysłanych i odebranych wiadomości XID nazywamy XID negocjacją.
 	Tej ramki użyto również podczas ustalania prędkości komunikacji, co jest częścią procedury zestawienia warstwy fizycznej.
@@ -22,4 +22,10 @@
 		\end{itemize}
 	\end{itemize} 
 	Wspomniano o parametrach HDLC, gdyż wiadomość negocjująca ich wartości może zawierać zarówno jeden jak i więcej parametrów.
-	
+
+	\begin{figure}[h!]
+         \centering
+         \includegraphics[scale=0.75]{Obrazki/DiagramyKlas/LowLevel.png}
+         \caption{Diagram klas przedstawiający relację pomiędzy abstrakcyjną oraz konkretną klasą poszczególnej ramki.
+             \newline(Opracowanie własne)}
+    \end{figure}
