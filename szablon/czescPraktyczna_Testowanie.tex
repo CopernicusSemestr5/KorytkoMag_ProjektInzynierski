@@ -110,7 +110,17 @@
         caption=Ciało przykładowego testu integracyjnego interfejsu użytkownika oraz kontrolera komend AISG wraz z definicją przykładowych parametrów testu]
         {Kod_Zrodlowy/TestyIntegracyjne_UI_Ctrl_Frames.cpp}
 \section{Manualne testy systemowe}
- Dzięki zaznajomieniu się z wieloma wzorcami projektowymi jak fabryka, komenda, budowniczy czy nakładanie obostrzeń na program dzięki listowaniu obsługiwanych komend, 
-    wspomniany wcześniej symulator urządzenia powstał niemalże za darmo, co uznaję za bardzo duży sukces z dziedziny projektowania architektury oprogramowania.
-    Kolejną zaletą utworzenia symulatora urządzenia jest umożliwienie testów komponentowych realizując regułę czarnej skrzynki, co pozwoli w przyszłości
-    znacznie skrócić czas testowania sterownika pod względem błędów logicznych.
+Dzięki zaznajomieniu się z wieloma wzorcami projektowymi jak fabryka, komenda, 
+budowniczy czy nakładanie obostrzeń na program dzięki listowaniu obsługiwanych komend, wspomniany wcześniej symulator urządzenia powstał
+przy minimalnym nakładzie pracy, co jest bardzo dużą oszczędnością. Świadczy to o sukcesie płynącego z 
+dobrze wykonanego projektu architektury oprogramowania. Kolejną zaletą utworzenia symulatora urządzenia jest umożliwienie przeprowadzenia manualnych testów komponentowych, 
+realizując regułę czarnej skrzynki. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Automatyczne testy systemowe}
+Implementacja automatycznych testów systemowych osiągalna będzie w momencie wystawienia przez programistę interfejsu aplikacji. Dzięki kompleksowemu pokryciu utworzonego
+kodu źródłowego testami na niższych poziomach, konfiguracja środowiska automatyzacji oraz tworzenie scenariuszy wykonania nie przynosi zbyt dużego zysku. 
+Dopiero w momencie uruchomienia więcej niż jednej instancji sterownika, komunikującej się z wieloma fizycznymi bądź emulowanymi urządzeniami, faza automatycznych testów
+systemowych przyniesie wymierne korzyści. Z racji tego, że skalowalność w górę utworzonego systemu planowana jest na dalsze etapy implementacji, zdefiniowano zamiar
+wzbogacenia regresji o ten poziom testowania.
