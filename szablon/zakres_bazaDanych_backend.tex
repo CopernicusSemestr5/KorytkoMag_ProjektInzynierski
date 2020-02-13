@@ -4,7 +4,7 @@ Praca obejmuje implementację sterownika, którego analizę możemy podzielić n
 
 \subsection{Baza danych}
 \begin{itemize}
-	\item Implementacja:
+	\item Implementacja, której diagram klas przedstawiono na rysunku \ref{fig:DiagramKlas_DB}:
 	\begin{itemize}
 		\item \textit{std::vector<std::string, std::any>}
 		\item Programowanie optymalne dla cache-u procesora
@@ -27,6 +27,7 @@ Praca obejmuje implementację sterownika, którego analizę możemy podzielić n
     \includegraphics[scale=0.90]{Obrazki/DiagramyKlas/DB.png}
     \caption{Diagram klas przedstawiający relacje klas tworzących bazę danych.
         \newline(Opracowanie własne)}
+	\label{fig:DiagramKlas_DB}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,19 +61,21 @@ Praca obejmuje implementację sterownika, którego analizę możemy podzielić n
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Front-end}
+Diagram przedstawiony na rysunku \ref{fig:DiagramKlas_UI} definiuje hierarchię klas tworzących interfejs użytkownika.
+Umożliwia on:
 \begin{itemize}
-	\item Konsolowy interfejs użytkownika umożliwiający wydawanie komend do:
+	\item Wydawanie komend do:
 	\begin{itemize}
 		\item Kontrolera sterownika;
 		\item Bazy danych;
 	\end{itemize}
-	\item Realizacja wzorców projektowych:
+	\item Realizuje wzorce projektowe:
 	\begin{itemize}
 		\item Komenda;
 		\item Metoda szablonowa;
 	\end{itemize}
 	\item Przekazywanie logów aplikacji z Back-endu;
-	\item Walidacja komend wpisanych przez użytkownika:
+	\item Walidację komend wpisanych przez użytkownika:
 	\begin{itemize}
 		\item Odrzucanie nieznanych komend;
 		\item Podpowiedź odnośnie wartości argumentów komend już znanych;
@@ -81,41 +84,37 @@ Praca obejmuje implementację sterownika, którego analizę możemy podzielić n
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[scale=0.90]{Obrazki/DiagramyKlas/UI.png}
+    \includegraphics[scale=0.75]{Obrazki/DiagramyKlas/UI.png}
     \caption{Diagram klas przedstawiający klasy wchodzące w skład interfejsu użytkownika.
         \newline(Opracowanie własne)}
+	\label{fig:DiagramKlas_UI}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Testowanie}
 \begin{itemize}
-\item Front-end
+\item Front-end:
 	\begin{itemize}
-		\item Jednostkowe
-		\item Modułowe
+		\item Jednostkowe;
+		\item Integracyjne;
 	\end{itemize}
-\item Back-end
+\item Back-end:
 	\begin{itemize}
-		\item Jednostkowe
+		\item Jednostkowe:
 		\begin{itemize}
-			\item HDLC
-			\item HDLC Body
-			\item DB
-		\end{itemize}
-		\item Modułowe
-		\begin{itemize}
-			\item Happy Path
-			\item Sad Path
+			\item HDLC;
+			\item HDLC Body;
+			\item DB;
 		\end{itemize}
 		\item Integracja
 		\begin{itemize}
-			\item UI + DB
-			\item UI + DB + Back-end Controller
+			\item UI + DB;
+			\item UI + DB + Back-end Controller;
 		\end{itemize}
 	\end{itemize}
-\item Komponentowe \newline
+\item Komponentowe:\newline
 	W celu weryfikacji działania symulatora sterownika od początku do końca zalecane jest uruchomienie całego komponentu 
-	jako czarną czarną skrzynkę oraz operowanie na nim przy pomocy zaimplementowanego interfejsu. W tym celu
-	zaimplementowany został również symulator urządzenia, który odbiera wiadomości oraz odpowiada na nie.
+	jako czarną skrzynkę oraz operowanie na nim przy pomocy zaimplementowanego interfejsu. W tym celu
+	utworzony został również symulator urządzenia, który odbiera wiadomości oraz odpowiada na nie. Realizuje to przy pomocy biblioteki ZeroMQ.
 \end{itemize}

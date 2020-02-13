@@ -8,7 +8,8 @@ zastosowanie innych parametrów wejściowych. Podczas tworzenia wzorców usilnie
 Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fragmentami kodu źródłowego.
 \section{Behawioralne}
     \subsection{Komenda}
-        Dzięki utworzeniu interfejsu komendy, zrealizowano regułę otwarcia na modyfikacje a zamknięcia na zmiany.
+        Dzięki utworzeniu interfejsu komendy, zrealizowano regułę otwarcia na modyfikacje a zamknięcia na zmiany. Można to zaobserować analizując diagram 
+        zamieszczony na rysunku \ref{fig:DiagramKlas_CTRL}, gdzie logika odpowiedzialna za budowę poszczególnych ramek HDLC została rozdzielona pomiędzy wieloma klasami.
         W przypadku poprawnej definicji funkcjonalności, która powinna zostać zrealizowana, dodajemy jedynie implementację tego interfejsu,
         przez co cała regresja pozostaje bez zmian, a dzięki kontrolerowi, który kolejkuje komendy można pokusić się o realizację kompozytu oraz
         wprowadzenie systemu wag bądź poleceń terminujących aktualnie zaplanowane zadania\cite{gamma2005wzorce}.
@@ -29,6 +30,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
             \includegraphics[scale=0.90]{Obrazki/DiagramyKlas/Ctrl.png}
             \caption{Diagram klas przedstawiający realizację wzorca komendy.
                 \newline(Opracowanie własne)}
+            \label{fig:DiagramKlas_CTRL}
         \end{figure}
     \newpage
     \subsection{Obiekt pusty}
@@ -64,12 +66,13 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
             {Kod_Zrodlowy/DesignPatterns_TemplateMethod_Implementation.cpp}
     \subsection{Strategia}
         Znanych jest wiele wzorców komunikacji pomiędzy komponentami aczkolwiek w projekcie użyto dwa najbardziej znane: Publikuj-Subskrybuj oraz Żadanie-Odpowiedź.
-        
+        Sposób w jaki sposób wiadomości wymieniane są pomiędzy utworzonymi komponentami można zaobserwować analizując rysunek \ref{fig:WzorceKomunikacji}.
         \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.75]{out/Diagramy/PublishSubscribe_RequestResponse.png}
             \caption{Przepływ wiadomości dla wzorca Publikuj-Subskrybuj oraz Żądanie-Odpowiedź.
                 \newline(Opracowanie własne)}
+            \label{fig:WzorceKomunikacji}
         \end{figure}
 
         Pierwszy z nich efektownie realizuje zasadę odwrócenia zależności, ponieważ sterownik urządzenia nadrzędne na początkowym etapie nie musi znać
