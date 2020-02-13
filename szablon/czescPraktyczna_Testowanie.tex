@@ -76,13 +76,13 @@
     Różnicą jest sposób przekazania danych wejściowych. W poprzednim rozdziale w ciele funkcji testowej, wywoływano poszczególne funkcje interfejsu bazy danych.
     Testy integracyjne dokonują modyfikacji bazy danych, korzystając z funkcji obiektu klasy ,,CMenu''. Przy jego pomocy, końcowy użytkownik wchodzi w interakcję ze sterownikiem  
     przy pomocy interfejsu konsoli. Dzięki odpowiedniej definicji metod klasy ,,CMenu'', na poziomie klasy testowej, pominięto fazę komunikacji przy pomocy konsoli.
-    Zastąpiono go wywołaniem funkcji, która jako argument przyjmuje obiekt typu std::vector<std::string>. Przechowuje on podzieloną na tokeny rzeczywistą komendę,
-    która ma za zadanie zmianę stanu bazy danych.
+    Zastąpiono go wywołaniem funkcji, która jako argument przyjmuje obiekt typu std::vector<std::string>, co można zaobserwować na listingu
+    \ref{lst:TestyIntegracyjne_UI_Database}. Przechowuje on podzieloną na tokeny rzeczywistą komendę, która ma za zadanie zmianę stanu bazy danych.
     \lstinputlisting[
         language=bash,
         basicstyle=\tiny,
-        label=lst:TestyIntegracyjne_UI_Database,
-        caption=Ciało przykładowego testu integracyjnego interfejsu użytkownika wraz z bazą danych]
+        caption=Ciało przykładowego testu integracyjnego interfejsu użytkownika wraz z bazą danych,
+        label=lst:TestyIntegracyjne_UI_Database]
         {Kod_Zrodlowy/TestyIntegracyjne_UI_Database.cpp}
 
     \subsection{Integracja interfejsu użytkownika z kontrolerem komend AISG}
@@ -90,25 +90,26 @@
     \ref{ch:WymaganiaFunkcjonalne}.
     Podobnie jak w przypadku testowania integracji bazy danych z interfejsem użytkownika. Dane wejściowe testu są obiektem typu std::vector<std::string>, który przechowuje
     rzeczywistą komendę podzieloną na tokeny. Ma ona za zadanie wykonanie jednej z komend rozpoznawaną przez warstwę fizyczną, łącza danych czy aplikacyjną.
-    Pomyślność integracji komponentów weryfikowana jest przy pomocy kodu rezultatu, zwracanego przez komendę ,,execute'' należącą do klasy kontrolera komend AISG.
+    Pomyślność integracji komponentów weryfikowana jest przy pomocy kodu rezultatu, zwracanego przez komendę ,,execute'' (rysunek \ref{lst:TestyIntegracyjne_UI_Ctrl})
+    należącą do klasy kontrolera komend AISG.
     \lstinputlisting[
         language=bash,
         basicstyle=\tiny,
-        label=lst:TestyIntegracyjne_UI_Ctrl,
-        caption=Ciało przykładowego testu integracyjnego interfejsu użytkownika oraz kontrolera komend AISG wraz z definicją przykładowych parametrów testu]
+        caption=Ciało przykładowego testu integracyjnego interfejsu użytkownika oraz kontrolera komend AISG wraz z definicją przykładowych parametrów testu,
+        label=lst:TestyIntegracyjne_UI_Ctrl]
         {Kod_Zrodlowy/TestyIntegracyjne_UI_Ctrl.cpp}
 \newpage
 
     \subsection{Integracja interfejsu użytkownika, kontrolera komend AISG oraz fabryki ramek HDLC}
     Przeprowadzone testy (listing \ref{lst:TestyIntegracyjne}- linijki [39; 50]) weryfikują działanie komend zdefiniowanych w rozdziale ,,Wymagania funkcjonalne''
     \ref{ch:WymaganiaFunkcjonalne}.
-    Na wejściu testu przekazywany jest obiekt typu std::vector<std::string>, który przechowuje rzeczywistą komendę podzieloną na tokeny. Rezultat wykonania
+    Na wejściu testu przekazywany jest obiekt typu std::vector<std::string> (rysunek \ref{lst:TestyIntegracyjne_UI_Ctrl_Frames}), który przechowuje rzeczywistą komendę podzieloną na tokeny. Rezultat wykonania
     weryfikowany jest z ramką HDLC budowaną przy pomocy fabryki użytej w kodzie produkcyjnym.
     \lstinputlisting[
         language=bash,
         basicstyle=\tiny,
-        label=lst:TestyIntegracyjne_UI_Ctrl_Frames,
-        caption=Ciało przykładowego testu integracyjnego interfejsu użytkownika oraz kontrolera komend AISG wraz z definicją przykładowych parametrów testu]
+        caption=Ciało przykładowego testu integracyjnego interfejsu użytkownika oraz kontrolera komend AISG wraz z definicją przykładowych parametrów testu,
+        label=lst:TestyIntegracyjne_UI_Ctrl_Frames]
         {Kod_Zrodlowy/TestyIntegracyjne_UI_Ctrl_Frames.cpp}
 \section{Manualne testy systemowe}
 Dzięki zaznajomieniu się z wieloma wzorcami projektowymi jak fabryka, komenda, 
