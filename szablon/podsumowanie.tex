@@ -36,7 +36,7 @@
     należy dokonać jej konwersji na postać binarną. Zarówno wiadomość odebrana, jak i wysłana, w trakcie transmisji może ulec wybrakowaniu bądź
     modyfikacji. W tym celu ramka HDLC protokołu AISG 2.0 posiada dwa bajty przeznaczone na walidację takowej wiadomości a jest to wykonywane
     dzięki wyliczeniu sumy CRC-16. W związku z tym, że istnieje wiele implementacji algorytmu wyliczania sumy CRC, a każda z nich może różnić się od siebie zarówno:
-    definicją wyrażenia wielomianowego, jego postacią oraz wartością początkową, próbowałem na podstawie ,,podsłuchanej'' wiadomości przy pomocy
+    definicją wyrażenia wielomianowego, jego postacią oraz wartością początkową, próbowano na podstawie ,,podsłuchanej'' wiadomości przy pomocy
     inżynierii wstecznej zdefiniować brakującą wiedzę, lecz aby tego dokonać konieczne było zdobycie informacji na temat zarówno endianowości
     jak i uporządkowania bitów, której na moment opracowywania algorytmu nie posiadano. Pomimo tego, że dla komputera jest to prosta operacja, to weryfikacja przez człowieka
     wartości sumy CRC dla wiadomości o długości 16-tu bajtów na kartce zajmuje naprawdę dużo czasu. W dodatku powszechnym problemem jest to, że 
