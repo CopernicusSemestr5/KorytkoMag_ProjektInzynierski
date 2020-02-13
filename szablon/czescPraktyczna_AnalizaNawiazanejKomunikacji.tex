@@ -1,18 +1,17 @@
 \chapter{Analiza nawiązanej komunikacji}
 \label{ch:AnalizaNawiazanejKomunikacji}
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[scale=0.70]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page1.png}
-        \caption{Ustanowienie prędkości połączenia wraz z początkowym skanowaniem urządzeń
-            \newline(Opracowanie własne)}
-        \label{fig:DiagramSequence_LinkSpeed_DeviceScan}
-        \end{figure}
-    \newpage
     W celu szczegółowej analizy wykonania programu przedstawionego na listingu \ref{lst:WykonanieProgramu}, utworzono diagram sekwencji podzielony na kilka części 
     (rysunek \ref{fig:DiagramSequence_LinkSpeed_DeviceScan}),
     co pozwoliło zobrazować zaistniałą komunikację pomiędzy użytkownikiem, urządzeniem nadrzędnym oraz urządzeniem podrzędnym.
     Na diagramie oraz podczas analizy pominięto cztery bajty stałe dla każdej wiadomości, czyli bajt startu równy 0x7E, dwa bajty sumy CRC =\{ 0x13, 0x37\} ( powód dlaczego ta wartość jest stała przedstawiono
     w podsumowaniu ) oraz bajt stopu równy 0x7E.
+    \begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.70]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page1.png}
+    \caption{Ustanowienie prędkości połączenia wraz z początkowym skanowaniem urządzeń
+        \newline(Opracowanie własne)}
+    \label{fig:DiagramSequence_LinkSpeed_DeviceScan}
+    \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -32,7 +31,7 @@ Analiza wartości wiadomości wychodzącej (rysunek \ref{lst:WykonanieProgramu}-
 Analizę kolejnych bajtów tej wiadomości pominięto, ponieważ mogą one przyjmować dowolną wartość. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \section{Skanowanie urządzeń}
 Parametrem tej komendy jest adres portu 5555, z którego korzysta sterownik
 do nawiązania połączenia typu tcp na adresie 127.0.0.1 wraz z symulatorem urządzenia,
@@ -294,6 +293,13 @@ Analiza wartości wiadomości wychodzącej
 Wiadomość przychodząca posiada tę samą wartość co wychodząca, dlatego pominięto jej analizę.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page4.png}
+    \caption{Negocjacja pozostałych parametrów HDLC oraz żądanie kalibracji urządzenia.
+    \newline(Opracowanie własne)}
+    \label{fig:DiagramSequence_3GPP_AISGVersion_Calibrate}
+\end{figure}
 
 \section{Wersja protokołu AISG}
 Analiza wartości wiadomości wychodzącej 
@@ -312,14 +318,6 @@ Analiza wartości wiadomości wychodzącej
     \end{enumerate}
 \end{enumerate}
 Wiadomość przychodząca posiada tę samą wartość co wychodząca, dlatego pominięto jej analizę.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.75]{out/Diagramy/UML_DiagramOfSequence_New/UML_DiagramOfSequence_New-page4.png}
-    \caption{Negocjacja pozostałych parametrów HDLC oraz żądanie kalibracji urządzenia.
-    \newline(Opracowanie własne)}
-    \label{fig:DiagramSequence_3GPP_AISGVersion_Calibrate}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
