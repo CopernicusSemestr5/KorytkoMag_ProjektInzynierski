@@ -11,7 +11,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         Dzięki utworzeniu interfejsu komendy, zrealizowano regułę otwarcia na modyfikacje a zamknięcia na zmiany.
         W przypadku poprawnej definicji funkcjonalności, która powinna zostać zrealizowana, dodajemy jedynie implementację tego interfejsu,
         przez co cała regresja pozostaje bez zmian, a dzięki kontrolerowi, który kolejkuje komendy można pokusić się o realizację kompozytu oraz
-        wprowadzenie systemu wag bądź poleceń terminujących aktualnie zaplanowane zadania.
+        wprowadzenie systemu wag bądź poleceń terminujących aktualnie zaplanowane zadania\cite{gamma2005wzorce}.
         Podczas implementacji sterownika zastosowano połączenie trzech wzorców projektowych a to wszystko dzięki potężnemu podejściu do organizacji
         struktury kodu jakim jest użycie komend. Zestawiając implementację interfejsu komendy oraz budowania konkretnej wiadomości dzięki fabryce
         pozwala na zdefiniowanie \textit{klas finalnych} zawierających charakterystyczne dla każdej z komend wywołań. 
@@ -51,7 +51,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         jak wysłanie wiadomości do urządzenia, bez zbędnego umieszczanie logiki weryfikacji w dalszym etapie. Zastosowanie tego wzorca umożliwi w przyszłości wdrożenie dodatkowych mechanizmów.
         Jednym z nich jest automatycznie pobranie długiego adresu portu na który ma zostać wysłana komenda, w przypadku podaniu klucza obiektu w bazie danych. 
         Natomiast następnym jest funkcjonalność automatycznej korekty w przypadku zaistniałego błędu syntaktycznego we wprowadzanej przez użytkownika komendzie.
-        Obecność komendy ,,execute'' pozwala połączyć wywołanie powyższych funkcji za pomocą jednego polecenia,
+        Obecność komendy ,,execute'' pozwala połączyć wywołanie powyższych funkcji za pomocą jednego polecenia\cite{gamma2005wzorce},
         nie posiadając wiedzy o tym jakiego typu procedury weryfikacji sterownik będzie próbował dokonać. Powyższą funkcjonalność osiągnięto dzięki efektownemu wykorzystaniu
         funkcji wirtualnych.
         \lstinputlisting[
@@ -111,7 +111,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         uznawana jest za niepoprawną implementacje oraz antywzorzec. W tej sytuacji z pomocą pojawia się wzorzec budowniczego, który podczas wywoływania metody 
         zmieniającej stan obiektu, dokonuje zamierzonego celu, po czym zwraca referencję na obiekt na rzecz którego została wywołana \textit{metoda}. 
         Umożliwia to szeregowe wywoływanie kolejnych modyfikatorów co znacznie oczyściło i zwiększyło czytelność programu. Istnieje wiele interpretacji tego wzorca projektowego,
-        w których dodana jest metoda finalizująca budowanie obiektu.
+        w których dodana jest metoda finalizująca budowanie obiektu\cite{gamma2005wzorce}.
         \lstinputlisting[
             language=C++,
             caption=Budowniczy wraz z Fluent API podczas budowania ramki I - Kalibruj]
@@ -121,7 +121,7 @@ Poniżej przedstawiono użyte podczas projektowania sterownika wzorce wraz z fra
         Istnieje pewien wzorzec, który owiany jest złą sławą. Programiści w momencie usłyszenia o nim dostają ciarek, gdyż sądzą, że pod tym słowem,
         kryje się obiekt, który potrafi zachować się w nieprzewidziany sposób podczas każdorazowego wywoływania jego metod. Z drugiej strony poprawna jego realizacja, 
         umożliwia dynamiczną zmianę wartości zwracanych przed system, a w przypadku sterownika dała możliwość uwspólnienie kodu wraz z symulatorem urządzenia,
-        na poziomie 90\%. Mowa o fabryce. W przypadku nieprzechowywania jakiegokolwiek stanu w jej instancji oraz zapoznania się w całości z realizowanym problemem
+        na poziomie 90\%. Mowa o fabryce\cite{gamma2005wzorce}. W przypadku nieprzechowywania jakiegokolwiek stanu w jej instancji oraz zapoznania się w całości z realizowanym problemem
         komunikacji pomiędzy urządzeniem podrzędnym i nadrzędnym, prawdą jest to, że zaledwie na jedną komendę sterownik nie oczekuje odpowiedzi, a odpowiednie
         nazwanie metod interfejsu fabryki pozwoli zaobserwować, że po obu stronach trzeba obsłużyć komunikację oraz budowę wiadomości charakterystyczną na przykład
         dla polecenia ,,kalibruj'' wprowadzając jedynie niewielkie modyfikacje. 
