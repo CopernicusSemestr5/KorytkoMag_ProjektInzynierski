@@ -5,7 +5,7 @@
     \newline
     Drugie prawo - Nie można napisać więcej testów jednostkowych, które są wystarczające do niespełnienia testu, a brak kompilacji jest jednocześnie nieudanym testem.
     \newline
-    Trzecie prawo - Nie można pisać większej ilości kodu produkcyjnego, niż wystarczy do spełnienia obecnie niespełnianego testu.\cite{martin2014czysty}
+    Trzecie prawo - Nie można pisać większej ilości kodu produkcyjnego, niż wystarczy do spełnienia obecnie niespełnianego testu\cite{martin2014czysty}.
     \newline
     Dzięki powyższym postulatom, projekt nie zawiera kodu nieużywanego, który wymagałby dodatkowego narzutu czasu podczas jego czytania. Prawdą jest to, że lepszy jest kod,
     którego nie ma, aniżeli ten który jest, aczkolwiek jego działanie jest niewiadome. Obszerna regresja na wielu poziomach abstrakcji pozwoliła na ciągłe usprawnianie zarówno architektury
@@ -22,8 +22,9 @@
     caption=Efekt uruchomienia testów jednostkowych]
     {LogZWykonania/LogsFromUT.log}
     
-    Testy jednostkowe zwane są często testami komponentów, czy też testami modułowymi. Ich głównym celem jest znalezienie błędów w implementacji danej jednostki / komponentu.
-    \cite{Testowanie}
+    Testy jednostkowe zwane są często testami komponentów, czy też testami modułowymi. Ich głównym celem jest znalezienie błędów 
+    w implementacji danej jednostki / komponentu\cite{Testowanie}.
+    
     Uruchomienie testów odbywa się przy pomocy komendy ,,bash runUT.sh'', wywoływanej z poziomu głównego katalogu projektu.
     
     \subsection{Testowanie bazy danych}
@@ -66,7 +67,7 @@
     caption=Testy integracyjne]
     {LogZWykonania/LogsFromMT.log}
     
-    Kolejnym poziomem są testy integracyjne, sprawdzają czy komponenty poprawnie współdziałają ze sobą. \cite{Testowanie}
+    Kolejnym poziomem są testy integracyjne, sprawdzają czy komponenty poprawnie współdziałają ze sobą\cite{Testowanie}. 
     Uruchomienie testów odbywa się przy pomocy komendy ,,bash runMT.sh'', wywoływanej z poziomu głównego katalogu projektu.
     
     \subsection{Integracja bazy danych z interfejsem użytkownika}

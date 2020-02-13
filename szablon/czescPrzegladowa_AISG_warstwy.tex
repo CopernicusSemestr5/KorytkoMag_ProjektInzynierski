@@ -8,12 +8,12 @@
 		Realizacja pracy w kierunku emulacji fizycznego połączenia do urządzenia niesie ze sobą pewne zmiany na tej warstawie.\newline
 		Należy pominąć obszar mechaniczny i elektryczny\cite{ETSI-3GPP-0}, a skupić się na obszarze funkcjonalnym oraz proceduralnym.
 		\subsection{2-ga - Łącza danych}
-		Rolą tej warstwy jest:
+		Rolą tej warstwy jest\cite{ETSI-3GPP-2}:
 		\begin{itemize}
-			\item Enkapsulacja\cite{ENKAPSULACJA} ramki \textit{HDLC Body} do ramki HDLC\cite{WIKI_ENG_HDLC}
+			\item Enkapsulacja\cite{ENKAPSULACJA} ramki \textit{HDLC Body} do ramki HDLC\cite{WIKI_ENG_HDLC};
 			\begin{itemize}
 				\item Dodanie \textit{bitów} startu i stopu;
-				\item Obliczenie oraz walidacja sumy CRC\cite{CRC}
+				\item Obliczenie oraz walidacja sumy CRC\cite{CRC};
 			\end{itemize}
 			\item Budowa ramki typu XID podczas procedur negocjacji:
 			\begin{itemize}
@@ -27,5 +27,5 @@
 		\subsection{7-ma - Aplikacji}
 			\begin{itemize}
 				\item Budowa ramki typu I;
-				\item Rozpoznawanie wysokopoziomowej komendy kalibruj;
+				\item Rozpoznawanie wysokopoziomowej komendy kalibruj\cite{ETSI-3GPP-7};
 			\end{itemize}
